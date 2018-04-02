@@ -300,50 +300,21 @@
         
           
             <p>Expression  -&gt; Expression Operator Expression       //递归定义<br>Expression  -&gt; Number<br>Operator    -&gt; +<br>Operator    -&gt; *<br>Expression  -&gt; 0,1,2,3…<br>Expression  -&gt;(Expression)              //新的表达式</p>
-<p><strong>Variables</strong><br>Assignment Statement:<br>    Noun = Expression<br>Variables can vary.So this is why we call it “variables”<br><strong>Conment</strong><br>Grammer Expression: #<br><strong>String</strong><br>We can use “+” operator to combine different strings in to a part.<br>e.g.:</p>
-<pre><code>name = &quot;Rattenfanger&quot;   #define variable
-print &quot;Hello &quot; + name + &quot;!&quot;*3      #print three ! in order.There is a blank after the &quot;Hello&quot; in order to make the hello and name desperated
-</code></pre><p>the result:<br>Hello Rattenfanger!!!<br><strong>Indexing Strings</strong><br>Grammer:<code>&lt;string&gt; [&lt;expression&gt;]</code><br>e.g.:<code>udacity [0]</code>       #That means we select the postion which is located in the order 0 of this string<br>result: “u”<br>we can also use the negative number to index strings,but it will do it in a opposite direction(right to left)<br>e.g.:<code>udacity [-1]</code> then it will index “y”<br><strong>Selecting the Sub-Sequences</strong><br>Grammer:<code>&lt;string&gt;[&lt;expression&gt;:&lt;expression&gt;]</code><br><code>[start:stop]</code><br>string is a subsquences of the characters in s starting from postion start,and ending with postion stop-1.<br>e.g.:</p>
-<pre><code>word = &quot;assume&quot;
-print word[3]
-print word[4:6]
-print word[4:]
-print word[:2]
-print word[:]
-</code></pre><p>the result:</p>
-<pre><code>u
-me
-me
-as
-assume
+<p><strong>Variables</strong><br>Assignment Statement:<br>    Noun = Expression<br>Variables can vary.So this is why we call it “variables”<br><strong>Conment</strong><br>Grammer Expression: #<br><strong>String</strong><br>We can use “+” operator to combine different strings in to a part.<br>e.g.:<br>    <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">"Rattenfanger"</span>   <span class="comment">#define variable</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"Hello "</span> + name + <span class="string">"!"</span>*<span class="number">3</span>      <span class="comment">#print three ! in order.There is a blank after the "Hello" in order to make the hello and name desperated</span></span><br></pre></td></tr></table></figure></p>
+<p>the result:<br><code>Hello Rattenfanger!!!</code><br><strong>Indexing Strings</strong><br>Grammer:<code>&lt;string&gt; [&lt;expression&gt;]</code><br>e.g.:<code>udacity [0]</code>       #That means we select the postion which is located in the order 0 of this string<br>result: “u”<br>we can also use the negative number to index strings,but it will do it in a opposite direction(right to left)<br>e.g.:<code>udacity [-1]</code> then it will index “y”<code>**Selecting the Sub-Sequences**
+Grammer:</code><string>[<expression>:<expression>]<code></code>[start:stop]`<br>string is a subsquences of the characters in s starting from postion start,and ending with postion stop-1.<br>e.g.:<br>    <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">word = <span class="string">"assume"</span></span><br><span class="line"><span class="keyword">print</span> word[<span class="number">3</span>]</span><br><span class="line"><span class="keyword">print</span> word[<span class="number">4</span>:<span class="number">6</span>]</span><br><span class="line"><span class="keyword">print</span> word[<span class="number">4</span>:]</span><br><span class="line"><span class="keyword">print</span> word[:<span class="number">2</span>]</span><br><span class="line"><span class="keyword">print</span> word[:]</span><br></pre></td></tr></table></figure></expression></expression></string></p>
+<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">the result:</span><br><span class="line"></span><br><span class="line">    u</span><br><span class="line">    me</span><br><span class="line">    me</span><br><span class="line">    <span class="keyword">as</span></span><br><span class="line">    assume</span><br></pre></td></tr></table></figure>
 </code></pre><p><strong>Finding String in String</strong><br><code>&lt;string&gt;.find(&lt;string&gt;)</code><br><code>&lt;the whole string&gt;.find(the string you want to index)</code><br>number that gives the first postion in search string where the target string appears.If the target string is not found,it will give us -1<br>e.g.:</p>
-<pre><code>pythagoras = &quot;There is geometry in the humming of the strings,there is music in the spacing of spheres.&quot;
-print pythagoras.find(&apos;string&apos;)
-print pythagoras[40:]
-print pythagoras.find(&apos;T&apos;)
-print pythagoras.find(&apos;spheres&apos;)
-print pythagoras[86:]
-print pythagoras.find(&apos;algebra&apos;)
-</code></pre><p>the result:</p>
-<pre><code>40
-string....
-0
-86
-spheres
-</code></pre><p>a especial example:<br>set the variable s is <code>&lt;string&gt;</code>(no matter what it is)</p>
+<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">pythagoras = <span class="string">"There is geometry in the humming of the strings,there is music in the spacing of spheres."</span></span><br><span class="line"><span class="keyword">print</span> pythagoras.find(<span class="string">'string'</span>)</span><br><span class="line"><span class="keyword">print</span> pythagoras[<span class="number">40</span>:]</span><br><span class="line"><span class="keyword">print</span> pythagoras.find(<span class="string">'T'</span>)</span><br><span class="line"><span class="keyword">print</span> pythagoras.find(<span class="string">'spheres'</span>)</span><br><span class="line"><span class="keyword">print</span> pythagoras[<span class="number">86</span>:]</span><br><span class="line"><span class="keyword">print</span> pythagoras.find(<span class="string">'algebra'</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">the result:</span><br><span class="line"></span><br><span class="line">    <span class="number">40</span></span><br><span class="line">    string....</span><br><span class="line">    <span class="number">0</span></span><br><span class="line">    <span class="number">86</span></span><br><span class="line">    spheres</span><br></pre></td></tr></table></figure>
+</code></pre><p>a especial example:<br><code>set the variable s is</code><string><code>(no matter what it is)</code></string></p>
 <pre><code>print s.find(&apos;&apos;)
 </code></pre><p>the result is: 0</p>
 <p><code>&lt;string&gt;.find(&lt;string&gt;,&lt;number&gt;)</code><br>it will appear at of after <code>&lt;string&gt;</code>       (be used to find the same string appears in the whole sentence)<br>e.g.:</p>
-<pre><code>danton = &quot;De l&apos;audace,encore de l&apos;audace, toujours de l&apos;audace.&quot;
-print danton.find(&apos;audace&apos;,25)              //indexing start at the number 25 postion
-print danton.find(&apos;audace&apos;,26)              //as so on
-print danton[47:]
-print danton.find(&apos;audace&apos;,48)
-</code></pre><p>the result is:</p>
-<pre><code>25
-47
-audace.
--1
+<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">danton = <span class="string">"De l'audace,encore de l'audace, toujours de l'audace."</span></span><br><span class="line"><span class="keyword">print</span> danton.find(<span class="string">'audace'</span>,<span class="number">25</span>)              //indexing start at the number <span class="number">25</span> postion</span><br><span class="line"><span class="keyword">print</span> danton.find(<span class="string">'audace'</span>,<span class="number">26</span>)              //<span class="keyword">as</span> so on</span><br><span class="line"><span class="keyword">print</span> danton[<span class="number">47</span>:]</span><br><span class="line"><span class="keyword">print</span> danton.find(<span class="string">'audace'</span>,<span class="number">48</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">the result <span class="keyword">is</span>:</span><br><span class="line"></span><br><span class="line">    <span class="number">25</span></span><br><span class="line">    <span class="number">47</span></span><br><span class="line">    audace.</span><br><span class="line">    <span class="number">-1</span></span><br></pre></td></tr></table></figure>
 </code></pre><p><strong>the understanding example of string function</strong><br>What we should notice is that <code>s[0]+s[1:]</code>is not always equal to the string variable <code>s</code> when <code>s</code> equals 0.Is will cause error when do s[0]<br><strong>new function</strong><br>the function “str()”<br>Grammer:<code>str(&lt;number&gt;) -&gt; &lt;string&gt;</code><br>e.g.:<code>str(89) -&gt; &#39;98&#39;   //a string which includes 9 and 8</code><br>e.g.:Given a variable,x,that stores the value of any decimal number,write Python code that prints out the nearest whole number to x.</p>
 <pre><code>num = x + 0.5
 s = str(num)
