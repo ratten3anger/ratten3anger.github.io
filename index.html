@@ -181,7 +181,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -191,7 +191,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -214,6 +214,175 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/02/string function learning of python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ratten3anger">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ratten3anger">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/02/string function learning of python/" itemprop="url">string function learning of python</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T10:56:25+08:00">
+                2018-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Expression  -&gt; Expression Operator Expression       //递归定义<br>Expression  -&gt; Number<br>Operator    -&gt; +<br>Operator    -&gt; *<br>Expression  -&gt; 0,1,2,3…<br>Expression  -&gt;(Expression)              //新的表达式</p>
+<p><strong>Variables</strong><br>Assignment Statement:<br>    Noun = Expression<br>Variables can vary.So this is why we call it “variables”<br><strong>Conment</strong><br>Grammer Expression: #<br><strong>String</strong><br>We can use “+” operator to combine different strings in to a part.<br>e.g.:</p>
+<pre><code>name = &quot;Rattenfanger&quot;   #define variable
+print &quot;Hello &quot; + name + &quot;!&quot;*3      #print three ! in order.There is a blank after the &quot;Hello&quot; in order to make the hello and name desperated
+</code></pre><p>the result:<br>Hello Rattenfanger!!!<br><strong>Indexing Strings</strong><br>Grammer:<code>&lt;string&gt; [&lt;expression&gt;]</code><br>e.g.:<code>udacity [0]</code>       #That means we select the postion which is located in the order 0 of this string<br>result: “u”<br>we can also use the negative number to index strings,but it will do it in a opposite direction(right to left)<br>e.g.:<code>udacity [-1]</code> then it will index “y”<br><strong>Selecting the Sub-Sequences</strong><br>Grammer:<code>&lt;string&gt;[&lt;expression&gt;:&lt;expression&gt;]</code><br><code>[start:stop]</code><br>string is a subsquences of the characters in s starting from postion start,and ending with postion stop-1.<br>e.g.:</p>
+<pre><code>word = &quot;assume&quot;
+print word[3]
+print word[4:6]
+print word[4:]
+print word[:2]
+print word[:]
+</code></pre><p>the result:</p>
+<pre><code>u
+me
+me
+as
+assume
+</code></pre><p><strong>Finding String in String</strong><br><code>&lt;string&gt;.find(&lt;string&gt;)</code><br><code>&lt;the whole string&gt;.find(the string you want to index)</code><br>number that gives the first postion in search string where the target string appears.If the target string is not found,it will give us -1<br>e.g.:</p>
+<pre><code>pythagoras = &quot;There is geometry in the humming of the strings,there is music in the spacing of spheres.&quot;
+print pythagoras.find(&apos;string&apos;)
+print pythagoras[40:]
+print pythagoras.find(&apos;T&apos;)
+print pythagoras.find(&apos;spheres&apos;)
+print pythagoras[86:]
+print pythagoras.find(&apos;algebra&apos;)
+</code></pre><p>the result:</p>
+<pre><code>40
+string....
+0
+86
+spheres
+</code></pre><p>a especial example:<br>set the variable s is <code>&lt;string&gt;</code>(no matter what it is)</p>
+<pre><code>print s.find(&apos;&apos;)
+</code></pre><p>the result is: 0</p>
+<p><code>&lt;string&gt;.find(&lt;string&gt;,&lt;number&gt;)</code><br>it will appear at of after <code>&lt;string&gt;</code>       (be used to find the same string appears in the whole sentence)<br>e.g.:</p>
+<pre><code>danton = &quot;De l&apos;audace,encore de l&apos;audace, toujours de l&apos;audace.&quot;
+print danton.find(&apos;audace&apos;,25)              //indexing start at the number 25 postion
+print danton.find(&apos;audace&apos;,26)              //as so on
+print danton[47:]
+print danton.find(&apos;audace&apos;,48)
+</code></pre><p>the result is:</p>
+<pre><code>25
+47
+audace.
+-1
+</code></pre><p><strong>the understanding example of string function</strong><br>What we should notice is that <code>s[0]+s[1:]</code>is not always equal to the string variable <code>s</code> when <code>s</code> equals 0.Is will cause error when do s[0]<br><strong>new function</strong><br>the function “str()”<br>Grammer:<code>str(&lt;number&gt;) -&gt; &lt;string&gt;</code><br>e.g.:<code>str(89) -&gt; &#39;98&#39;   //a string which includes 9 and 8</code><br>e.g.:Given a variable,x,that stores the value of any decimal number,write Python code that prints out the nearest whole number to x.</p>
+<pre><code>num = x + 0.5
+s = str(num)
+point = s.find(&apos;.&apos;)
+print s.[:point]
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -257,7 +426,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-31T12:56:41+08:00">
                 2018-03-31
@@ -385,7 +554,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-28T15:35:01+08:00">
                 2018-03-28
@@ -406,7 +575,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -527,7 +696,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-21T23:07:15+08:00">
                 2018-03-21
@@ -650,8 +819,8 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -662,11 +831,20 @@
               <div class="site-state-item site-state-categories">
                 
                   <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">Kategorien</span>
+                  <span class="site-state-item-name">categories</span>
                 
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
             
 
           </nav>
@@ -732,7 +910,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
