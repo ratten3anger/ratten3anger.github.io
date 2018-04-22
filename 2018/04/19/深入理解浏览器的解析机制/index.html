@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Ratten3anger">
 <meta property="og:description" content="0x01    前言对于B/S架构的数据流程一直不是很了解，所以学习一波。看看这之中的编码、解码形式以及处理机制与原理，便于对以后前端安全的继续学习。 0x02 编码基础部分：先来上几个编码，这几个脚本能够执行吗： 基础部分1234567891011&amp;lt;a href=&quot;%6a%61%76%61%73%63%72%69%70%74:%61%6c%65%72%74%28%31%29&quot;&amp;gt;&amp;lt">
 <meta property="og:image" content="http://yoursite.com/Bowser/character_entities.png">
-<meta property="og:updated_time" content="2018-04-21T14:36:10.453Z">
+<meta property="og:updated_time" content="2018-04-22T06:31:56.209Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解浏览器的解析机制">
 <meta name="twitter:description" content="0x01    前言对于B/S架构的数据流程一直不是很了解，所以学习一波。看看这之中的编码、解码形式以及处理机制与原理，便于对以后前端安全的继续学习。 0x02 编码基础部分：先来上几个编码，这几个脚本能够执行吗： 基础部分1234567891011&amp;lt;a href=&quot;%6a%61%76%61%73%63%72%69%70%74:%61%6c%65%72%74%28%31%29&quot;&amp;gt;&amp;lt">
@@ -186,7 +186,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Accueil
           </a>
         </li>
       
@@ -260,7 +260,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-19T16:33:00+08:00">
                 2018-04-19
@@ -303,7 +303,7 @@
         <h2 id="0x01-前言"><a href="#0x01-前言" class="headerlink" title="0x01    前言"></a>0x01    前言</h2><p>对于B/S架构的数据流程一直不是很了解，所以学习一波。看看这之中的编码、解码形式以及处理机制与原理，便于对以后前端安全的继续学习。</p>
 <h2 id="0x02-编码"><a href="#0x02-编码" class="headerlink" title="0x02 编码"></a>0x02 编码</h2><p>基础部分：<br>先来上几个编码，这几个脚本能够执行吗：</p>
 <h3 id="基础部分"><a href="#基础部分" class="headerlink" title="基础部分"></a>基础部分</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"%6a%61%76%61%73%63%72%69%70%74:%61%6c%65%72%74%28%31%29"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span>	</span><br><span class="line">URL 编码 "javascript:alert(1)"</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&amp;#x6a;&amp;#x61;&amp;#x76;&amp;#x61;&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;:%61%6c%65%72%74%28%32%29"</span>&gt;</span></span><br><span class="line">HTML字符实体编码 "javascript" 和 URL 编码 "alert(2)"</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript%3aalert(3)"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">URL 编码 ":"</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&amp;#60;img src=x onerror=alert(4)&amp;#62;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">HTML字符实体编码 <span class="tag">&lt; 和 &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">textarea</span>&gt;</span>&amp;#60;script&amp;#62;alert(5)&amp;#60;/script&amp;#62;<span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">HTML字符实体编码 <span class="tag">&lt; 和 &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">textarea</span>&gt;</span><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">alert(6)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="高级部分"><a href="#高级部分" class="headerlink" title="高级部分"></a>高级部分</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"confirm('7&amp;#39;);"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">HTML字符实体编码 " ' " （单引号）</span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"confirm('8\u0027);"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">Unicode编码 " ' " （单引号）</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116&amp;#40;&amp;#57;&amp;#41;&amp;#59</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">HTML字符实体编码 alert(9);</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">\u0061\u006c\u0065\u0072\u0074(10);</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">Unicode 编码 alert</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">\u0061\u006c\u0065\u0072\u0074\u0028\u0031\u0031\u0029</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">Unicode 编码 alert(11)</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">\u0061\u006c\u0065\u0072\u0074(\u0031\u0032)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">Unicode 编码 alert 和 12</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">alert('13\u0027)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">Unicode 编码 " ' " （单引号）</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">alert('14\u000a')</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">Unicode 编码换行符（0x0A）</span><br></pre></td></tr></table></figure>
+<h3 id="高级部分"><a href="#高级部分" class="headerlink" title="高级部分"></a>高级部分</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"confirm('7&amp;#39;);"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">HTML字符实体编码 " ' " （单引号）</span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"confirm('8\u0027);"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">Unicode编码 " ' " （单引号）</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116&amp;#40;&amp;#57;&amp;#41;&amp;#59</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">HTML字符实体编码 alert(9);</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">\u0061\u006c\u0065\u0072\u0074(10);</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">Unicode 编码 alert</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">\u0061\u006c\u0065\u0072\u0074\u0028\u0031\u0031\u0029</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">Unicode 编码 alert(11)</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">\u0061\u006c\u0065\u0072\u0074(\u0031\u0032)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">Unicode 编码 alert 和 12</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">alert('13\u0027)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">Unicode 编码 " ' " （单引号）</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript">alert(<span class="string">'14\u000a'</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">Unicode 编码换行符（0x0A）</span><br></pre></td></tr></table></figure>
 <h3 id="额外赠送"><a href="#额外赠送" class="headerlink" title="额外赠送"></a>额外赠送</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&amp;#x6a;&amp;#x61;&amp;#x76;&amp;#x61;&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;&amp;#x3a;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x33;&amp;#x31;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x36;&amp;#x33;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x33;&amp;#x35;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x37;&amp;#x25;&amp;#x33;&amp;#x32;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x37;&amp;#x25;&amp;#x33;&amp;#x34;&amp;#x28;&amp;#x31;&amp;#x35;&amp;#x29;"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>问题答案参见    此处[<a href="http://test.attacker-domain.com/browserparsing/answers.txt]" target="_blank" rel="noopener">http://test.attacker-domain.com/browserparsing/answers.txt]</a><br>此处为    测试页面[<a href="http://test.attacker-domain.com/browserparsing/tests.html]" target="_blank" rel="noopener">http://test.attacker-domain.com/browserparsing/tests.html]</a>     </p>
 <p>解析HTML文档时主要有三个处理过程：</p>
@@ -322,9 +322,9 @@
 <ol>
 <li><p>空元素(Void elements)，如<code>&lt;area&gt;</code>,<code>&lt;br&gt;</code>,<code>&lt;base&gt;</code>等等</p>
 </li>
-<li><p>原始文本元素(Raw text elements)，有<script>和<style></p>
+<li><p>原始文本元素(Raw text elements)，有<code>&lt;script&gt;</code>和<code>&lt;style&gt;</code></p>
 </li>
-<li><p>RCDATA元素(RCDATA elements)，有<textarea>和<title></p>
+<li><p>RCDATA元素(RCDATA elements)，有<code>&lt;textarea&gt;</code>和<code>&lt;title&gt;</code></p>
 </li>
 <li><p>外部元素(Foreign elements)，例如MathML命名空间或者SVG命名空间的元素</p>
 </li>
@@ -363,7 +363,7 @@
 <p>有没有可能解码次数超过3轮呢？考虑一下这个例子<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Example   C: <span class="tag">&lt;<span class="name">a</span>   <span class="attr">href</span>=<span class="string">"javascript:window.open('UserInput')"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>例C与例A很像，但不同的是在UserInput前多了window.open()操作。因此，对UserInput多了一次额外的URL解码操作。总的来说，四轮解码操作被完成，顺序是HTML，URL，JavaScript和URL。</p>
 <h2 id="0x07-总结"><a href="#0x07-总结" class="headerlink" title="0x07 总结"></a>0x07 总结</h2><p>简而言之，作为攻击者为了弄明白如何让XSS向量逃逸出上下文，或者为了使你的应用能够正确编码用户的输入，你必须真正明白浏览器的解析原理以及它们（HTML，URL和JavaScript解析器）是如何协同工作的。只有这样，你才能从浏览器的角度去正确编码你的向量。</p>
-</script></p></li></ol>
+
       
     </div>
     
@@ -453,10 +453,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+            Table Des Matières
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+            Ensemble
           </li>
         </ul>
       
@@ -477,7 +477,7 @@
                 <a href="/archives/">
               
                   <span class="site-state-item-count">7</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-name">articles</span>
                 </a>
               </div>
             
@@ -544,7 +544,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-前言"><span class="nav-number">1.</span> <span class="nav-text">0x01    前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-编码"><span class="nav-number">2.</span> <span class="nav-text">0x02 编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础部分"><span class="nav-number">2.1.</span> <span class="nav-text">基础部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高级部分"><span class="nav-number">2.2.</span> <span class="nav-text">高级部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#额外赠送"><span class="nav-number">2.3.</span> <span class="nav-text">额外赠送</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-HTML解析"><span class="nav-number">3.</span> <span class="nav-text">0x03 HTML解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#几个概念："><span class="nav-number">3.1.</span> <span class="nav-text">几个概念：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-前言"><span class="nav-number">1.</span> <span class="nav-text">0x01    前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-编码"><span class="nav-number">2.</span> <span class="nav-text">0x02 编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础部分"><span class="nav-number">2.1.</span> <span class="nav-text">基础部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高级部分"><span class="nav-number">2.2.</span> <span class="nav-text">高级部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#额外赠送"><span class="nav-number">2.3.</span> <span class="nav-text">额外赠送</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-HTML解析"><span class="nav-number">3.</span> <span class="nav-text">0x03 HTML解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#几个概念："><span class="nav-number">3.1.</span> <span class="nav-text">几个概念：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-URL解析"><span class="nav-number">4.</span> <span class="nav-text">0x04    URL解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05-JavaScript解析"><span class="nav-number">5.</span> <span class="nav-text">0x05    JavaScript解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x06-解析流"><span class="nav-number">6.</span> <span class="nav-text">0x06 解析流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x07-总结"><span class="nav-number">7.</span> <span class="nav-text">0x07 总结</span></a></li></ol></div>
             
 
           </div>
@@ -582,7 +582,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Thème &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
 
 
 
