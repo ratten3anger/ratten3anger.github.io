@@ -85,13 +85,13 @@
 <meta property="og:url" content="http://yoursite.com/2018/04/22/DDCTF web1/index.html">
 <meta property="og:site_name" content="Ratten3anger">
 <meta property="og:description" content="最近做的一个CTF，还是因为菜所以只做得来一个，而且坎坎坷坷Orz，所以来总结一下 进入题目后看见是一个数据库的查询页面，url包含sig、time参数。对可控参数进行测试发现过滤严密。查看源码发现有一个hidden表单的框叫author。有两个思路： 手工注入(漫长的过程) python脚本模仿浏览器行为(目前玩不来Orz)控制台修改进行注入太麻烦，所以抓包。然而更改参数后出现sig    er">
-<meta property="og:image" content="http://yoursite.com/2018/04/22/DDCTF%20web1/DDCTF/web1_2/png">
+<meta property="og:image" content="http://yoursite.com/2018/04/22/DDCTF%20web1/DDCTF/web1_2.png">
 <meta property="og:image" content="http://yoursite.com/2018/04/22/DDCTF%20web1/DDCTF/web1_1.png">
-<meta property="og:updated_time" content="2018-04-22T06:27:50.628Z">
+<meta property="og:updated_time" content="2018-04-22T06:29:49.343Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web1">
 <meta name="twitter:description" content="最近做的一个CTF，还是因为菜所以只做得来一个，而且坎坎坷坷Orz，所以来总结一下 进入题目后看见是一个数据库的查询页面，url包含sig、time参数。对可控参数进行测试发现过滤严密。查看源码发现有一个hidden表单的框叫author。有两个思路： 手工注入(漫长的过程) python脚本模仿浏览器行为(目前玩不来Orz)控制台修改进行注入太麻烦，所以抓包。然而更改参数后出现sig    er">
-<meta name="twitter:image" content="http://yoursite.com/2018/04/22/DDCTF%20web1/DDCTF/web1_2/png">
+<meta name="twitter:image" content="http://yoursite.com/2018/04/22/DDCTF%20web1/DDCTF/web1_2.png">
 
 
 
@@ -187,7 +187,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -197,7 +197,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -261,7 +261,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-22T13:04:24+08:00">
                 2018-04-22
@@ -304,7 +304,7 @@
         <p>最近做的一个CTF，还是因为菜所以只做得来一个，而且坎坎坷坷Orz，所以来总结一下</p>
 <p>进入题目后看见是一个数据库的查询页面，url包含sig、time参数。对可控参数进行测试发现过滤严密。查看源码发现有一个hidden表单的框叫author。<br>有两个思路：</p>
 <p><li>手工注入(漫长的过程)</li></p>
-<p><li>python脚本模仿浏览器行为(目前玩不来Orz)<br>控制台修改进行注入太麻烦，所以抓包。然而更改参数后出现sig    error，求助师傅后发现这是数字签名，所以对http包的修改不可行，而页面也引用了math.js(进行sig的加密)和main.js。<br><img src="./DDCTF/web1_2/png" alt=""></li></p>
+<p><li>python脚本模仿浏览器行为(目前玩不来Orz)<br>控制台修改进行注入太麻烦，所以抓包。然而更改参数后出现sig    error，求助师傅后发现这是数字签名，所以对http包的修改不可行，而页面也引用了math.js(进行sig的加密)和main.js。<br><img src="./DDCTF/web1_2.png" alt=""></li></p>
 <p>表单的提交路径只写了index.php，这说明在别处指向了后台入口，所以把整个HTML页面下载下来进一步研究:<br><img src="./DDCTF/web1_1.png" alt=""><br>mian.js中指向了index.php所以把这个参数以及表单action改为题目index地址，没有.php</p>
 <p>payload:<br>基准语句:    ‘ &amp;&amp; if(ascii(substr((select version),1,1))&gt;0,1,0)#</p>
 <p>将中间语句替换为<br>查库:select schema_name    from information_schema.schemata limit 0,1<br>库名:”DDCTF”</p>
@@ -412,7 +412,7 @@
                 <a href="/archives/">
               
                   <span class="site-state-item-count">7</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -425,7 +425,7 @@
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
                   <span class="site-state-item-count">2</span>
-                  <span class="site-state-item-name">Tags</span>
+                  <span class="site-state-item-name">tags</span>
                 </a>
               </div>
             
@@ -493,7 +493,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
