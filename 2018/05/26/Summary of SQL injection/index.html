@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="python," />
+  <meta name="keywords" content="injection," />
 
 
 
@@ -79,17 +79,19 @@
 
 
 
-<meta name="description" content="Expression  -&amp;gt; Expression Operator Expression       //递归定义Expression  -&amp;gt; NumberOperator    -&amp;gt; +Operator    -&amp;gt; *Expression  -&amp;gt; 0,1,2,3…Expression  -&amp;gt;(Expression)              //新的表达式">
-<meta name="keywords" content="python">
+<meta name="description" content="###一个简单的总结 0x01 注入导图">
+<meta name="keywords" content="injection">
 <meta property="og:type" content="article">
-<meta property="og:title" content="string function learning of python">
-<meta property="og:url" content="http://yoursite.com/2018/04/02/string function learning of python/index.html">
+<meta property="og:title" content="injection.md">
+<meta property="og:url" content="http://yoursite.com/2018/05/26/Summary of SQL injection/index.html">
 <meta property="og:site_name" content="Ratten3anger">
-<meta property="og:description" content="Expression  -&amp;gt; Expression Operator Expression       //递归定义Expression  -&amp;gt; NumberOperator    -&amp;gt; +Operator    -&amp;gt; *Expression  -&amp;gt; 0,1,2,3…Expression  -&amp;gt;(Expression)              //新的表达式">
-<meta property="og:updated_time" content="2018-05-06T12:37:16.067Z">
+<meta property="og:description" content="###一个简单的总结 0x01 注入导图">
+<meta property="og:image" content="http://yoursite.com/SQL%20injection/1.jpg">
+<meta property="og:updated_time" content="2018-05-26T14:44:01.837Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="string function learning of python">
-<meta name="twitter:description" content="Expression  -&amp;gt; Expression Operator Expression       //递归定义Expression  -&amp;gt; NumberOperator    -&amp;gt; +Operator    -&amp;gt; *Expression  -&amp;gt; 0,1,2,3…Expression  -&amp;gt;(Expression)              //新的表达式">
+<meta name="twitter:title" content="injection.md">
+<meta name="twitter:description" content="###一个简单的总结 0x01 注入导图">
+<meta name="twitter:image" content="http://yoursite.com/SQL%20injection/1.jpg">
 
 
 
@@ -119,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/02/string function learning of python/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/26/Summary of SQL injection/"/>
 
 
 
 
 
-  <title>string function learning of python | Ratten3anger</title>
+  <title>injection.md | Ratten3anger</title>
   
 
 
@@ -232,7 +234,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/02/string function learning of python/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/26/Summary of SQL injection/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ratten3anger">
@@ -249,7 +251,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">string function learning of python</h1>
+          <h1 class="post-title" itemprop="name headline">injection.md</h1>
         
 
         <div class="post-meta">
@@ -261,8 +263,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T10:56:25+08:00">
-                2018-04-02
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-26T21:56:46+08:00">
+                2018-05-26
               </time>
             
 
@@ -299,30 +301,9 @@
       
 
       
-        <p>Expression  -&gt; Expression Operator Expression       //递归定义<br>Expression  -&gt; Number<br>Operator    -&gt; +<br>Operator    -&gt; *<br>Expression  -&gt; 0,1,2,3…<br>Expression  -&gt;(Expression)              //新的表达式</p>
-<p><strong>Variables</strong><br>Assignment Statement:<br>    Noun = Expression<br>Variables can vary.So this is why we call it “variables”<br><strong>Conment</strong><br>Grammer Expression: #<br><strong>String</strong><br>We can use “+” operator to combine different strings in to a part.<br>e.g.:<br>    <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">"Rattenfanger"</span>   <span class="comment">#define variable</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"Hello "</span> + name + <span class="string">"!"</span>*<span class="number">3</span>      <span class="comment">#print three ! in order.There is a blank after the "Hello" in order to make the hello and name desperated</span></span><br></pre></td></tr></table></figure></p>
-<p>the result:<br><code>Hello Rattenfanger!!!</code><br><strong>Indexing Strings</strong><br>Grammer:<code>&lt;string&gt; [&lt;expression&gt;]</code><br>e.g.:<code>udacity [0]</code>       #That means we select the postion which is located in the order 0 of this string<br>result: “u”<br>we can also use the negative number to index strings,but it will do it in a opposite direction(right to left)<br>e.g.:<code>udacity [-1]</code> then it will index “y”<code>**Selecting the Sub-Sequences**
-Grammer:</code><string>[<expression>:<expression>]<code></code>[start:stop]`<br>string is a subsquences of the characters in s starting from postion start,and ending with postion stop-1.<br>e.g.:<br>    <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">word = <span class="string">"assume"</span></span><br><span class="line"><span class="keyword">print</span> word[<span class="number">3</span>]</span><br><span class="line"><span class="keyword">print</span> word[<span class="number">4</span>:<span class="number">6</span>]</span><br><span class="line"><span class="keyword">print</span> word[<span class="number">4</span>:]</span><br><span class="line"><span class="keyword">print</span> word[:<span class="number">2</span>]</span><br><span class="line"><span class="keyword">print</span> word[:]</span><br></pre></td></tr></table></figure></expression></expression></string></p>
-<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">the result:</span><br><span class="line"></span><br><span class="line">    u</span><br><span class="line">    me</span><br><span class="line">    me</span><br><span class="line">    <span class="keyword">as</span></span><br><span class="line">    assume</span><br></pre></td></tr></table></figure>
-</code></pre><p><strong>Finding String in String</strong><br><code>&lt;string&gt;.find(&lt;string&gt;)</code><br><code>&lt;the whole string&gt;.find(the string you want to index)</code><br>number that gives the first postion in search string where the target string appears.If the target string is not found,it will give us -1<br>e.g.:</p>
-<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">pythagoras = <span class="string">"There is geometry in the humming of the strings,there is music in the spacing of spheres."</span></span><br><span class="line"><span class="keyword">print</span> pythagoras.find(<span class="string">'string'</span>)</span><br><span class="line"><span class="keyword">print</span> pythagoras[<span class="number">40</span>:]</span><br><span class="line"><span class="keyword">print</span> pythagoras.find(<span class="string">'T'</span>)</span><br><span class="line"><span class="keyword">print</span> pythagoras.find(<span class="string">'spheres'</span>)</span><br><span class="line"><span class="keyword">print</span> pythagoras[<span class="number">86</span>:]</span><br><span class="line"><span class="keyword">print</span> pythagoras.find(<span class="string">'algebra'</span>)</span><br></pre></td></tr></table></figure>
+        <p>###一个简单的总结</p>
+<p><strong>0x01 注入导图</strong><br><img src="/SQL injection/1.jpg" alt="injection"></p>
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">the result:</span><br><span class="line"></span><br><span class="line">    <span class="number">40</span></span><br><span class="line">    string....</span><br><span class="line">    <span class="number">0</span></span><br><span class="line">    <span class="number">86</span></span><br><span class="line">    spheres</span><br></pre></td></tr></table></figure>
-</code></pre><p>a especial example:<br><code>set the variable s is</code><string><code>(no matter what it is)</code></string></p>
-<pre><code>print s.find(&apos;&apos;)
-</code></pre><p>the result is: 0</p>
-<p><code>&lt;string&gt;.find(&lt;string&gt;,&lt;number&gt;)</code><br>it will appear at of after <code>&lt;string&gt;</code>       (be used to find the same string appears in the whole sentence)<br>e.g.:</p>
-<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">danton = <span class="string">"De l'audace,encore de l'audace, toujours de l'audace."</span></span><br><span class="line"><span class="keyword">print</span> danton.find(<span class="string">'audace'</span>,<span class="number">25</span>)              //indexing start at the number <span class="number">25</span> postion</span><br><span class="line"><span class="keyword">print</span> danton.find(<span class="string">'audace'</span>,<span class="number">26</span>)              //<span class="keyword">as</span> so on</span><br><span class="line"><span class="keyword">print</span> danton[<span class="number">47</span>:]</span><br><span class="line"><span class="keyword">print</span> danton.find(<span class="string">'audace'</span>,<span class="number">48</span>)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">the result <span class="keyword">is</span>:</span><br><span class="line"></span><br><span class="line">    <span class="number">25</span></span><br><span class="line">    <span class="number">47</span></span><br><span class="line">    audace.</span><br><span class="line">    <span class="number">-1</span></span><br></pre></td></tr></table></figure>
-</code></pre><p><strong>the understanding example of string function</strong><br>What we should notice is that <code>s[0]+s[1:]</code>is not always equal to the string variable <code>s</code> when <code>s</code> equals 0.Is will cause error when do s[0]<br><strong>new function</strong><br>the function “str()”<br>Grammer:<code>str(&lt;number&gt;) -&gt; &lt;string&gt;</code><br>e.g.:<code>str(89) -&gt; &#39;98&#39;   //a string which includes 9 and 8</code><br>e.g.:Given a variable,x,that stores the value of any decimal number,write Python code that prints out the nearest whole number to x.</p>
-<pre><code>num = x + 0.5
-s = str(num)
-point = s.find(&apos;.&apos;)
-print s.[:point]
-
-&lt;!--more--&gt;
-</code></pre>
       
     </div>
     
@@ -339,7 +320,7 @@ print s.[:point]
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"># python</a>
+            <a href="/tags/injection/" rel="tag"># injection</a>
           
         </div>
       
@@ -352,8 +333,8 @@ print s.[:point]
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/31/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2018/05/13/对于XXE的学习/" rel="next" title="对于XXE的学习">
+                <i class="fa fa-chevron-left"></i> 对于XXE的学习
               </a>
             
           </div>
@@ -361,10 +342,6 @@ print s.[:point]
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/02/网强杯wp的学习/" rel="prev" title="网强杯wp数题的学习">
-                网强杯wp数题的学习 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
